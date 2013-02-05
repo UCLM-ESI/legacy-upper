@@ -16,5 +16,7 @@ UDP
 ---
 
 - Cliente_
+- Servidor_Síncrono_
 
-.. _Cliente: https://bitbucket.org/arco_group/python-net/raw/49e006731ec9/upper/UDP_client.py
+.. _Cliente:           https://bitbucket.org/arco_group/upper/raw/tip/UDP_client.py
+.. _Servidor_Síncrono: https://bitbucket.org/arco_group/upper/raw/tip/UDP_server.py
