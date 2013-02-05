@@ -19,11 +19,11 @@ Puedes descargar este repositorio completo con::
 UDP
 ---
 
-- [Cliente][udp-client]
-- [Servidor síncrono][udp-server]
-- [Servidor multiproceso]                   [udp-fork]
-- [Servidor síncrono con SocketServer]      [udp-SS]
-- [Servidor multiproceso con SocketServer]  [udp-SS-fork]
+- [Cliente] [udp-client]
+- [Servidor síncrono] [udp-server]
+- [Servidor multiproceso][udp-fork]
+- [Servidor síncrono con SocketServer] [udp-SS]
+- [Servidor multiproceso con SocketServer] [udp-SS-fork]
 
 
 [udp-client]:    https://bitbucket.org/arco_group/upper/raw/tip/UDP_client.py
