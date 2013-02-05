@@ -14,6 +14,7 @@ añadir dichos mecanismos.
 
 Puedes descargar este repositorio completo con:
 
+    :::shell
     $ hg clone https://bitbucket.org/arco_group/upper
 
 
