@@ -14,7 +14,7 @@ añadir dichos mecanismos.
 
 Puedes descargar este repositorio completo con:
 
-> $ hg clone https://bitbucket.org/arco_group/upper
+    $ hg clone https://bitbucket.org/arco_group/upper
 
 
 UDP
