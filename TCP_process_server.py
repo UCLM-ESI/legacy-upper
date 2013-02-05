@@ -4,35 +4,20 @@
 
 import sys, os, time
 import socket
+import multiprocessing as mp
+
+MAX_CHILDREN = 10
 
 
-class ProcessPool:
-    def __init__(self, max_children=40):
-        self.max_children = max_children
-        self.children = []
+def start_new_process(func, args):
+    while len(mp.active_children()) >= MAX_CHILDREN:
+        try:
+            os.waitpid(0, 0)
+        except OSError:
+            pass
 
-    # taken from SocketServer (at Python std lib)
-    def collect_children(self):
-        while self.children:
-            if len(self.children) < self.max_children:
-                opts = os.WNOHANG
-            else:
-                opts = 0
-
-            pid, status = os.waitpid(0, opts)
-            if not pid:
-                break
-
-            self.children.remove(pid)
-
-    def start_new_process(self, func, args):
-        self.collect_children()
-        pid = os.fork()
-        if pid:
-            self.children.append(pid)
-        else:
-            func(*args)
-            sys.exit()
+    ps = mp.Process(target=func, args=args)
+    ps.start()
 
 
 def upper(msg):
@@ -58,13 +43,12 @@ def main():
     sock.bind(('', int(sys.argv[1])))
     sock.listen(5)
 
-    pool = ProcessPool()
     n = 0
 
     while 1:
         child_sock, client = sock.accept()
-        pool.start_new_process(handle, (child_sock, client))
         n += 1
+        start_new_process(handle, (child_sock, client))
 
 
 if len(sys.argv) != 2:
