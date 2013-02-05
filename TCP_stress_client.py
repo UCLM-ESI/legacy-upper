@@ -6,30 +6,29 @@ import sys, threading, thread, time, select
 from socket import *
 
 TIMEOUT = 30
+queries = ['hello', 'world', 'bye', 'people']
 
-msglist = ['hello', 'world', 'bye', 'people']
 
 def client(n):
     global r
-    end = False
     sock = socket(AF_INET, SOCK_STREAM)
     sock.connect((sys.argv[1], port))
-    for cad in msglist:
-        data = '{0} [{1}]'.format(cad, n)
+
+    for q in queries:
+        data = '{0} [{1}]'.format(q, n)
         sock.send(data)
 
         reply = ''
         while len(reply) < len(data):
             rd = select.select([sock], [], [], TIMEOUT)[0]
-            if rd == []:
-                print('No response:', n)
+            if not rd:
+                print('- Client {0} does not respond after {1}s'.format(n, TIMEOUT))
                 r += 1
-                end = True
-                break
+                return
+
             reply += sock.recv(32)
 
-        if end: break
-        print "Received: '{0}'".format(reply)
+        print("- Received: '{0}'".format(reply))
 
     sock.close()
 
@@ -40,25 +39,23 @@ if len(sys.argv) != 4:
 
 
 threads = []
-
 port = int(sys.argv[2])
+nclients = int(sys.argv[3])
 
-for n in range(int(sys.argv[3])):
-    worker = threading.Thread(target = client, args = (n,))
-    threads.append(worker)
+for n in range(nclients):
+    threads.append(threading.Thread(target = client, args = (n,)))
 
 r = 0
-n = 0
-while n < len(threads):
+
+for t in threads:
     try:
-        threads[n].start()
-    except thread.error, e:
-        print e
+        t.start()
+    except thread.error as e:
+        print(e)
         time.sleep(.1)
-        continue
-    n += 1
 
-for w in threads:
-    w.join()
+for t in threads:
+    t.join()
 
-print('did not reply', r)
+if r:
+    print('- {0} clients did not reply'.format(r))
