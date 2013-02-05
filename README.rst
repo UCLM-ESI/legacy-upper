@@ -35,7 +35,35 @@ UDP
    https://bitbucket.org/arco_group/upper/raw/tip/UDP_fork_server.py
 
 .. _Servidor síncrono con SocketServer:
-   https://bitbucket.org/arco_group/upper/src/tip/UDP_SS_server.py
+   https://bitbucket.org/arco_group/upper/raw/tip/UDP_SS_server.py
 
 .. _Servidor multiproceso con SocketServer:
-   https://bitbucket.org/arco_group/upper/src/tip/UDP_SS_fork_server.py
+   https://bitbucket.org/arco_group/upper/raw/tip/UDP_SS_fork_server.py
+
+
+TCP
+---
+
+- `Cliente`_
+- `Servidor Síncrono`_
+- `Servidor multiproceso`_
+- `Servidor multihilo`_
+- `Servidor síncrono con SocketServer`_
+- `Servidor multiproceso con SocketServer`_
+- `Servidor multihilo con SocketServer`_
+
+
+.. _Cliente:
+   https://bitbucket.org/arco_group/upper/raw/tip/TCP_client.py
+
+.. _Servidor Síncrono:
+   https://bitbucket.org/arco_group/upper/raw/tip/TCP_server.py
+
+.. _Servidor Multiproceso:
+   https://bitbucket.org/arco_group/upper/raw/tip/TCP_fork_server.py
+
+.. _Servidor síncrono con SocketServer:
+   https://bitbucket.org/arco_group/upper/raw/tip/TCP_SS_server.py
+
+.. _Servidor multiproceso con SocketServer:
+   https://bitbucket.org/arco_group/upper/raw/tip/TCP_SS_fork_server.py
