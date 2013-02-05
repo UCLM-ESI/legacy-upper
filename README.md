@@ -1,6 +1,3 @@
-<!-- -*- coding:utf-8 mode:md -*- -->
-
-
 Servidores y clientes UDP y TCP con Python
 ==========================================
 
@@ -60,3 +57,11 @@ TCP
 [tcp-select]:    https://bitbucket.org/arco_group/upper/raw/tip/TCP_select_server.py
 [tcp-asyncore]:  https://bitbucket.org/arco_group/upper/raw/tip/TCP_asyncore_server.py
 [tcp-twisted]:   https://bitbucket.org/arco_group/upper/raw/tip/TCP_twisted_server.py
+
+<!--
+-- Local Variables:
+--  coding: utf-8
+--  mode: flyspell
+--  ispell-local-dictionary: "castellano"
+-- End:
+-->
