@@ -1,4 +1,5 @@
-.. -*- coding:utf-8 mode:rst -*-
+% -*- coding:utf-8 mode:md -*-
+
 
 Servidores y clientes UDP y TCP con Python
 ==========================================
@@ -35,3 +36,20 @@ UDP
 
 TCP
 ---
+
+- [Cliente] [tcp-client]
+- [Servidor síncrono] [tcp-server]
+- [Servidor multiproceso][tcp-fork]
+- [Servidor multihilo][tcp-thread]
+- [Servidor síncrono con SocketServer] [tcp-SS]
+- [Servidor multiproceso con SocketServer] [tcp-SS-fork]
+- [Servidor multihilo con SocketServer] [tcp-SS-thread]
+
+
+[tcp-client]:    https://bitbucket.org/arco_group/upper/raw/tip/TCP_client.py
+[tcp-server]:    https://bitbucket.org/arco_group/upper/raw/tip/TCP_server.py
+[tcp-fork]:      https://bitbucket.org/arco_group/upper/raw/tip/TCP_fork_server.py
+[tcp-thread]:    https://bitbucket.org/arco_group/upper/raw/tip/TCP_thread_server.py
+[tcp-SS]:        https://bitbucket.org/arco_group/upper/raw/tip/TCP_SS_server.py
+[tcp-SS-fork]:   https://bitbucket.org/arco_group/upper/raw/tip/TCP_SS_fork_server.py
+[tcp-SS-thread]: https://bitbucket.org/arco_group/upper/raw/tip/TCP_SS_thread_server.py
