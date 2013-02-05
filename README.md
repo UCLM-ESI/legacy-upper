@@ -19,17 +19,17 @@ Puedes descargar este repositorio completo con::
 UDP
 ---
 
-- `Cliente`_
-- `Servidor Síncrono`_
+- [Cliente][udp-client]
+- [Servidor síncrono[udp-server]
+
+<!--
 - `Servidor multiproceso`_
 - `Servidor síncrono con SocketServer`_
 - `Servidor multiproceso con SocketServer`_
+-->
 
-.. _Cliente:
-   https://bitbucket.org/arco_group/upper/raw/tip/UDP_client.py
-
-.. _Servidor Síncrono:
-   https://bitbucket.org/arco_group/upper/raw/tip/UDP_server.py
+[udp-client]:    https://bitbucket.org/arco_group/upper/raw/tip/UDP_client.py
+[udp-server]:    https://bitbucket.org/arco_group/upper/raw/tip/UDP_server.py
 
 .. _Servidor Multiproceso:
    https://bitbucket.org/arco_group/upper/raw/tip/UDP_fork_server.py
