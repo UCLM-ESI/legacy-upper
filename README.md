@@ -12,9 +12,9 @@ Dado que su objetivo es docente, se han sacrificado el control de errores (tal c
 excepciones) en favor de la legibilidad y el tamaño. Una implementación correcta debería
 añadir dichos mecanismos.
 
-Puedes descargar este repositorio completo con::
+Puedes descargar este repositorio completo con:
 
-  $ hg clone https://bitbucket.org/arco_group/upper
+> $ hg clone https://bitbucket.org/arco_group/upper
 
 
 UDP
