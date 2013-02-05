@@ -1,4 +1,4 @@
-% -*- coding:utf-8 mode:md -*-
+<!-- -*- coding:utf-8 mode:md -*- -->
 
 
 Servidores y clientes UDP y TCP con Python
@@ -44,6 +44,9 @@ TCP
 - [Servidor síncrono con SocketServer] [tcp-SS]
 - [Servidor multiproceso con SocketServer] [tcp-SS-fork]
 - [Servidor multihilo con SocketServer] [tcp-SS-thread]
+- [Servidor asíncrono con select] [tcp-select]
+- [Servidor asíncrono con asyncore] [tcp-asyncore]
+- [Servidor asíncrono con twisted] [tcp-twisted]
 
 
 [tcp-client]:    https://bitbucket.org/arco_group/upper/raw/tip/TCP_client.py
@@ -53,3 +56,6 @@ TCP
 [tcp-SS]:        https://bitbucket.org/arco_group/upper/raw/tip/TCP_SS_server.py
 [tcp-SS-fork]:   https://bitbucket.org/arco_group/upper/raw/tip/TCP_SS_fork_server.py
 [tcp-SS-thread]: https://bitbucket.org/arco_group/upper/raw/tip/TCP_SS_thread_server.py
+[tcp-select]:    https://bitbucket.org/arco_group/upper/raw/tip/TCP_select_server.py
+[tcp-asyncore]:  https://bitbucket.org/arco_group/upper/raw/tip/TCP_asyncore_server.py
+[tcp-twisted]:   https://bitbucket.org/arco_group/upper/raw/tip/TCP_twisted_server.py
