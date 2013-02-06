@@ -2,7 +2,9 @@
 # Copyright: See AUTHORS and COPYING
 "Usage: {0} <port>"
 
-import sys, os, time
+import sys
+import os
+import time
 import socket
 import multiprocessing as mp
 
@@ -43,11 +45,8 @@ def main():
     sock.bind(('', int(sys.argv[1])))
     sock.listen(5)
 
-    n = 0
-
     while 1:
         child_sock, client = sock.accept()
-        n += 1
         start_new_process(handle, (child_sock, client))
 
 
