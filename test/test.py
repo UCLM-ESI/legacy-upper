@@ -9,7 +9,7 @@ from prego.net import localhost, listen_port
 def wait_clients(clients):
     task = Task('wait clients end')
     for client in clients:
-        task.wait_that(client, terminated(), timeout=20)
+        task.wait_that(client, terminated(), timeout=60)
 
 
 class UDPTests(TestCase):
@@ -54,12 +54,13 @@ class UDPTests(TestCase):
 class TCPTests(TestCase):
     def setUp(self):
         context.port = 2000
+        context.timeout = 20
 
     def run_server(self, prog):
         server = Task('server', detach=True)
         server.assert_that(localhost,
                            is_not(listen_port(context.port, proto='tcp')))
-        server.command("./{0} $port".format(prog), timeout=20, expected=None)
+        server.command("./{0} $port".format(prog), expected=None)
 
         clients = self.run_clients()
         wait_clients(clients)
@@ -71,8 +72,7 @@ class TCPTests(TestCase):
         for i in range(10):
             req = 'hello-%s' % i
             client = Task('client', detach=True)
-            client.command('echo %s | ./TCP_client.py localhost $port' % req,
-                           timeout=20)
+            client.command('echo %s | ./TCP_client.py localhost $port' % req)
             client.assert_that(client.lastcmd.stdout.content,
                                contains_string("Reply is '" + req.upper()))
             clients.append(client)
@@ -111,3 +111,39 @@ class TCPTests(TestCase):
 
     def test_twisted(self):
         self.run_server('TCP_twisted.py')
+
+
+class TCP6Tests(TestCase):
+    def setUp(self):
+        context.port = 2000
+        context.timeout = 40
+
+    def run_server(self, prog):
+        server = Task('server', detach=True)
+        server.assert_that(localhost,
+                           is_not(listen_port(context.port, proto='tcp')))
+        server.command("./{0} $port".format(prog), expected=None)
+
+    def run_clients(self, prog):
+        Task().wait_that(localhost, listen_port(context.port, proto='tcp'))
+
+        clients = []
+        for i in range(10):
+            req = 'hello-%s' % i
+            client = Task('client', detach=True)
+            client.command('echo {0} | ./{1} $port'.format(req, prog))
+            client.assert_that(client.lastcmd.stdout.content,
+                               contains_string("Reply is '" + req.upper()))
+            clients.append(client)
+
+        return clients
+
+    def test_basic_with_ipv4_client(self):
+        self.run_server('TCP6_server.py')
+        clients = self.run_clients('TCP_client.py 127.0.0.1')
+        wait_clients(clients)
+
+    def test_basic_with_ipv6_client(self):
+        self.run_server('TCP6_server.py')
+        clients = self.run_clients('TCP6_client.py ::1')
+        wait_clients(clients)

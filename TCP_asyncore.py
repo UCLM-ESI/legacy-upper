@@ -5,9 +5,11 @@
 import sys, asyncore, time
 import socket
 
+
 def upper(msg):
     time.sleep(1)
     return msg.upper()
+
 
 class ChildHandler(asyncore.dispatcher):
     def __init__(self, sock):
@@ -27,13 +29,14 @@ class ChildHandler(asyncore.dispatcher):
     def handle_close(self):
         self.close()
 
+
 class ParentHandler(asyncore.dispatcher):
     def __init__(self):
         asyncore.dispatcher.__init__(self)
         self.create_socket(socket.AF_INET, socket.SOCK_STREAM)
         self.set_reuse_addr()
         self.bind(('', int(sys.argv[1])))
-        self.listen(5)
+        self.listen(30)
 
     def handle_accept(self):
         child_sock, client = self.accept()

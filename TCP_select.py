@@ -2,12 +2,16 @@
 # Copyright: See AUTHORS and COPYING
 "Usage: {0} <port>"
 
-import sys, select, time
-from socket import *
+import sys
+import select
+import time
+import socket
+
 
 def upper(msg):
     time.sleep(1)
     return msg.upper()
+
 
 def ChildHandler(s):
     data = s.recv(32)
@@ -17,6 +21,7 @@ def ChildHandler(s):
         return
 
     s.sendall(upper(data))
+
 
 def ParentHandler(s):
     child_sock, client = s.accept()
@@ -29,10 +34,10 @@ if len(sys.argv) != 2:
     print(__doc__.format(__file__))
     sys.exit(1)
 
-ss = socket(AF_INET, SOCK_STREAM)
-ss.setsockopt(SOL_SOCKET, SO_REUSEADDR, 1)
+ss = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+ss.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
 ss.bind(('', int(sys.argv[1])))
-ss.listen(5)
+ss.listen(30)
 
 socks = [ss]
 
