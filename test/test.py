@@ -44,6 +44,9 @@ class UDPTests(TestCase):
     def test_basic(self):
         self.run_server('UDP_server.py')
 
+    def test_fork(self):
+        self.run_server('UDP_fork.py')
+
     def test_SocketServer(self):
         self.run_server('UDP_SS.py')
 
@@ -89,7 +92,7 @@ class TCPTests(TestCase):
         self.run_server('TCP_fork.py')
 
     def test_SocketServer_fork(self):
-        self.run_server('TCP_fork.py')
+        self.run_server('TCP_SS_fork.py')
 
     def test_process(self):
         self.run_server('TCP_process.py')
