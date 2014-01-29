@@ -1,15 +1,14 @@
-Servidores y clientes UDP y TCP con Python
-==========================================
+Python TCP and UDP servers and clients
+======================================
 
-Estos ejemplos implementan un servicio muy simple llamado ``upper``. Los servidores
-``upper`` devuelven al cliente la cadena que se le envía (como el servicio ``echo``) pero
-transformada a mayúsculas.
+These examples implement a very simple service called ``upper``. The ``upper`` servers
+reply to the client the text message that they send to it (as the ``echo`` service), but
+converted to uppercase.
 
-Dado que su objetivo es docente, se han sacrificado el control de errores (tal como las
-excepciones) en favor de la legibilidad y el tamaño. Una implementación correcta debería
-añadir dichos mecanismos.
+As they have a teaching objective. I sacrificed error handling (like exceptions) for
+readability and size. A right implementation should add that mechanisms.
 
-Puedes descargar este repositorio completo con:
+You may download this repository with next command:
 
     :::bash
     $ hg clone https://bitbucket.org/arco_group/upper
@@ -18,12 +17,12 @@ Puedes descargar este repositorio completo con:
 UDP
 ---
 
-- [Cliente] [udp-client]
-- [Servidor síncrono] [udp-server]
-- [Servidor síncrono con SocketServer] [udp-SS]
+- [client] [udp-client]
+- [synchronous server] [udp-server]
+- [synchronous server with SocketServer] [udp-SS]
 
-- [Servidor multiproceso][udp-fork]
-- [Servidor multiproceso con SocketServer] [udp-SS-fork]
+- [multiprocess server][udp-fork]
+- [multiprocess server with SocketServer] [udp-SS-fork]
 
 
 [udp-client]:    https://bitbucket.org/arco_group/upper/raw/tip/UDP_client.py
@@ -37,21 +36,21 @@ UDP
 TCP
 ---
 
-- [Cliente] [tcp-client]
-- [Servidor síncrono] [tcp-server]
-- [Servidor síncrono con SocketServer] [tcp-SS]
+- [client] [tcp-client]
+- [synchronous server] [tcp-server]
+- [synchronous server with SocketServer] [tcp-SS]
 
-- [Servidor multiproceso][tcp-fork]
-- [Servidor multiproceso con SocketServer] [tcp-SS-fork]
-- [Servidor multiproceso con Process] [tcp-process]
-- [Servidor con process workers (preforking)] [tcp-worker]
+- [forking server][tcp-fork]
+- [forking server with SocketServer] [tcp-SS-fork]
+- [forking server with Process] [tcp-process]
+- [preforking server (process workers)] [tcp-worker]
 
-- [Servidor multihilo][tcp-thread]
-- [Servidor multihilo con SocketServer] [tcp-SS-thread]
+- [threaded server][tcp-thread]
+- [threaded server with SocketServer] [tcp-SS-thread]
 
-- [Servidor asíncrono con select] [tcp-select]
-- [Servidor asíncrono con asyncore] [tcp-asyncore]
-- [Servidor asíncrono con twisted] [tcp-twisted]
+- [async server with select] [tcp-select]
+- [async server with asyncore] [tcp-asyncore]
+- [async server with twisted] [tcp-twisted]
 
 
 [tcp-client]:    https://bitbucket.org/arco_group/upper/raw/tip/TCP_client.py
@@ -74,6 +73,6 @@ TCP
 -- Local Variables:
 --  coding: utf-8
 --  mode: flyspell
---  ispell-local-dictionary: "castellano"
+--  ispell-local-dictionary: "american"
 -- End:
 -->

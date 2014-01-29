@@ -1,13 +1,12 @@
+#!/usr/bin/make -f
+# -*- mode:makefile -*-
 
 SRC=$(wildcard *.py)
 
 all:   	$(SRC:.py=.rtf)
 
-%.rtf: %.py
-	highlight -R --style emacs $< -o $@
-
-%.html: %.py
-	highlight -X --style emacs $< -o $@
+%.rtf %.html: %.py
+	highlight --style edit-emacs -o $@ -i $<
 
 print:
 	for i in `ls *.py`; do \
@@ -15,4 +14,4 @@ print:
 	done
 
 clean:
-	$(RM) *~ *.pyc *.html *.rtf
+	$(RM) *~ *.pyc $(SRC:.py=.html) *.rtf
