@@ -70,8 +70,8 @@ TCP
 [tcp-twisted]:   https://bitbucket.org/arco_group/upper/raw/tip/TCP_twisted.py
 
 
-[//]: Local Variables:
-[//]:  coding: utf-8
-[//]:  mode: flyspell
-[//]:  ispell-local-dictionary: "american"
-[//]: End:
+[comment]: Local Variables:
+[comment]:  coding: utf-8
+[comment]:  mode: flyspell
+[comment]:  ispell-local-dictionary: "american"
+[comment]: End:
