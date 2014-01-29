@@ -14,7 +14,8 @@ sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
 
 while 1:
     data = sys.stdin.readline().strip()
-    if not data: break
+    if not data:
+        break
 
     sock.sendto(data, (sys.argv[1], int(sys.argv[2])))
     msg, server = sock.recvfrom(1024)

@@ -2,8 +2,11 @@
 # Copyright: See AUTHORS and COPYING
 "Usage: {0} <port>"
 
-import sys, os, time
+import sys
+import os
+import time
 import socket
+
 
 class ProcessPool:
     def __init__(self, max_children=40):
@@ -19,7 +22,9 @@ class ProcessPool:
                 opts = 0
 
             pid, status = os.waitpid(0, opts)
-            if not pid: break
+            if not pid:
+                break
+
             self.children.remove(pid)
 
     def start_new_process(self, func, args):
@@ -31,13 +36,16 @@ class ProcessPool:
             func(*args)
             sys.exit()
 
+
 def upper(msg):
     time.sleep(1)
     return msg.upper()
 
+
 def handle(sock, msg, client, n):
     print('New request: {0} {1}'.format(n, client))
     sock.sendto(upper(msg), client)
+
 
 def main():
     sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)

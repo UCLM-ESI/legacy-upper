@@ -2,19 +2,23 @@
 # Copyright: See AUTHORS and COPYING
 "Usage: {0} <port>"
 
-import sys, time
-from socket import *
+import sys
+import time
+import socket
+
 
 def upper(msg):
     time.sleep(1)
     return msg.upper()
 
+
 def handle(sock, msg, client, n):
     print("New request {0} {1}".format(n, client))
     sock.sendto(upper(msg), client)
 
+
 def main():
-    sock = socket(AF_INET, SOCK_DGRAM)
+    sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
     sock.bind(('', int(sys.argv[1])))
 
     n = 0
