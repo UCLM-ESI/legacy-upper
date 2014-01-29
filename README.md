@@ -69,10 +69,9 @@ TCP
 [tcp-asyncore]:  https://bitbucket.org/arco_group/upper/raw/tip/TCP_asyncore.py
 [tcp-twisted]:   https://bitbucket.org/arco_group/upper/raw/tip/TCP_twisted.py
 
-<!--
--- Local Variables:
---  coding: utf-8
---  mode: flyspell
---  ispell-local-dictionary: "american"
--- End:
--->
+
+[//] Local Variables:
+[//]  coding: utf-8
+[//]  mode: flyspell
+[//]  ispell-local-dictionary: "american"
+[//] End:
