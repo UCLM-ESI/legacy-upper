@@ -1,5 +1,5 @@
-Python TCP and UDP servers and clients
-======================================
+Python-3 TCP and UDP servers and clients
+========================================
 
 These examples implement a very simple service called ``upper``. The ``upper`` servers
 reply to the client the text message that they send to it (as the ``echo`` service), but
@@ -11,6 +11,7 @@ readability and size. A right implementation should add that mechanisms.
 You may download this repository with next command:
 
     :::bash
+
     $ hg clone https://bitbucket.org/arco_group/upper
 
 
@@ -50,7 +51,7 @@ TCP
 
 - [async server with select] [tcp-select]
 - [async server with asyncore] [tcp-asyncore]
-- [async server with twisted] [tcp-twisted]
+- [async server with twisted] [tcp-twisted] (python-2.7)
 
 
 [tcp-client]:    https://bitbucket.org/arco_group/upper/raw/tip/TCP_client.py

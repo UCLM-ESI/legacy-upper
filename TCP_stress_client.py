@@ -1,9 +1,13 @@
-#!/usr/bin/python
+#!/usr/bin/python3
 # Copyright: See AUTHORS and COPYING
 "Usage: {0} <host> <port> <n_clients>"
 
-import sys, threading, thread, time, select
-from socket import *
+import sys
+import threading
+import thread
+import time
+import select
+import socket
 
 TIMEOUT = 30
 queries = ['hello', 'world', 'bye', 'people']
@@ -11,7 +15,7 @@ queries = ['hello', 'world', 'bye', 'people']
 
 def client(n):
     global r
-    sock = socket(AF_INET, SOCK_STREAM)
+    sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
     sock.connect((sys.argv[1], port))
 
     for q in queries:

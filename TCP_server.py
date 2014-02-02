@@ -1,10 +1,11 @@
-#!/usr/bin/python
+#!/usr/bin/python3
 # Copyright: See AUTHORS and COPYING
 "Usage: {0} <port>"
 
 import sys
 import time
 import socket
+import signal
 
 
 def upper(msg):
@@ -18,6 +19,7 @@ def handle(sock, client):
         data = sock.recv(32)
         if not data:
             break
+
         sock.sendall(upper(data))
 
     sock.close()
@@ -28,6 +30,7 @@ if len(sys.argv) != 2:
     print(__doc__.format(__file__))
     sys.exit(1)
 
+signal.signal(signal.SIGINT, lambda n, f: sys.exit(0))
 sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 sock.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
 sock.bind(('', int(sys.argv[1])))

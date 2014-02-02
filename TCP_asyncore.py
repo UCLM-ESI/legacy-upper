@@ -1,8 +1,10 @@
-#!/usr/bin/python
+#!/usr/bin/python3
 # Copyright: See AUTHORS and COPYING
 "Usage: {0} <port>"
 
-import sys, asyncore, time
+import sys
+import asyncore
+import time
 import socket
 
 
@@ -14,17 +16,17 @@ def upper(msg):
 class ChildHandler(asyncore.dispatcher):
     def __init__(self, sock):
         asyncore.dispatcher.__init__(self, sock)
-        self.buffer = ''
+        self.data = bytes()
 
     def handle_read(self):
-        self.buffer += upper(self.recv(32))
+        self.data += upper(self.recv(32))
 
     def writable(self):
-        return (len(self.buffer) > 0)
+        return (len(self.data) > 0)
 
     def handle_write(self):
-        sent = self.send(self.buffer.upper())
-        self.buffer = self.buffer[sent:]
+        sent = self.send(self.data.upper())
+        self.data = self.data[sent:]
 
     def handle_close(self):
         self.close()
@@ -40,7 +42,7 @@ class ParentHandler(asyncore.dispatcher):
 
     def handle_accept(self):
         child_sock, client = self.accept()
-        print 'Client connected', client
+        print('Client connected: {}'.format(client))
         ChildHandler(child_sock)
 
 

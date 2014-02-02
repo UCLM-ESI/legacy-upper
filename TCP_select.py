@@ -1,4 +1,4 @@
-#!/usr/bin/python
+#!/usr/bin/python3
 # Copyright: See AUTHORS and COPYING
 "Usage: {0} <port>"
 
@@ -44,8 +44,8 @@ socks = [ss]
 while 1:
     rd = select.select(socks, [], [])[0]
 
-    print socks
-    print rd
+    print(socks)
+    print(rd)
 
     for i in rd:
         if i == ss:

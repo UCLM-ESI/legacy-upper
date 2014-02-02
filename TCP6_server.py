@@ -1,4 +1,4 @@
-#!/usr/bin/python
+#!/usr/bin/python3
 # Copyright: See AUTHORS and COPYING
 "Usage: {0} <port>"
 
@@ -18,6 +18,7 @@ def handle(sock, client):
         data = sock.recv(32)
         if not data:
             break
+
         sock.sendall(upper(data))
 
     sock.close()
