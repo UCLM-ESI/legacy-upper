@@ -1,18 +1,21 @@
-#!/usr/bin/python
+#!/usr/bin/python3
 # Copyright: See AUTHORS and COPYING
 "Usage: {0} <port>"
 
 import sys
-import SocketServer, time
+import time
+from socketserver import DatagramRequestHandler, ThreadingUDPServer
+
 
 def upper(msg):
     time.sleep(1)
     return msg.upper()
 
-class UpperHandler(SocketServer.DatagramRequestHandler):
+
+class UpperHandler(DatagramRequestHandler):
     def __init__(self, *args):
         self.n = 0
-        SocketServer.DatagramRequestHandler.__init__(self, *args)
+        DatagramRequestHandler.__init__(self, *args)
 
     def handle(self):
         self.n += 1
@@ -25,5 +28,6 @@ if len(sys.argv) != 2:
     print(__doc__.format(__file__))
     sys.exit(1)
 
-server = SocketServer.ThreadingUDPServer(('', int(sys.argv[1])), UpperHandler)
+server = ThreadingUDPServer(('', int(sys.argv[1])),
+                            UpperHandler)
 server.serve_forever()

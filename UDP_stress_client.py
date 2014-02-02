@@ -1,21 +1,28 @@
-#!/usr/bin/python
+#!/usr/bin/python3
 # Copyright: See AUTHORS and COPYING
 "Usage: {0} <host> <port> <n_clients> <message>"
 
-import sys, threading, thread, time, select
-from socket import *
+import sys
+import threading
+import thread
+import time
+import select
+import socket
 
 TIMEOUT = 8
 
+
 def client(n):
     global r
-    sock = socket(AF_INET, SOCK_DGRAM)
-    sock.sendto('{0} [{1}]'.format(sys.argv[4], n), (sys.argv[1], port))
+    sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+    sock.sendto('{0} [{1}]'.format(sys.argv[4], n),
+                (sys.argv[1], port))
     rd = select.select([sock], [], [], TIMEOUT)[0]
     if rd == []:
         print('{0} does not reply'.format(n))
         r += 1
         return
+
     msg, server = sock.recvfrom(1024)
     print("Received: '{0}'".format(msg))
     sock.close()
@@ -38,8 +45,8 @@ n = 0
 while n < len(workers):
     try:
         workers[n].start()
-    except thread.error, e:
-        print e
+    except thread.error as e:
+        print(e)
         time.sleep(0.5)
         continue
     n += 1

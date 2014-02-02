@@ -1,12 +1,14 @@
-#!/usr/bin/python
+#!/usr/bin/python3
 # Copyright: See AUTHORS and COPYING
 "Usage: {0} <port>"
 
-import sys, os, time
+import sys
+import os
+import time
 import socket
 
 
-class ProcessPool:
+class ProcessPool(object):
     def __init__(self, max_children=40):
         self.max_children = max_children
         self.children = []
@@ -74,4 +76,4 @@ if len(sys.argv) != 2:
 try:
     main()
 except KeyboardInterrupt:
-    sys.exit(0)
+    pass

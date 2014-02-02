@@ -1,8 +1,10 @@
-#!/usr/bin/python
+#!/usr/bin/python3
 # Copyright: See AUTHORS and COPYING
 "Usage: {0} <port>"
 
-import sys, thread, time
+import sys
+import _thread
+import time
 import socket
 
 
@@ -12,7 +14,7 @@ def upper(msg):
 
 
 def handle(sock, client, n):
-    print 'Client connected', n, client
+    print('Client connected: {} {}'.format(n, client))
     while 1:
         data = sock.recv(32)
         if not data:
@@ -34,4 +36,4 @@ n = 0
 while 1:
     child_sock, client = sock.accept()
     n += 1
-    thread.start_new_thread(handle, (child_sock, client, n))
+    _thread.start_new_thread(handle, (child_sock, client, n))

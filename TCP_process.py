@@ -1,4 +1,4 @@
-#!/usr/bin/python
+#!/usr/bin/python3
 # Copyright: See AUTHORS and COPYING
 "Usage: {0} <port>"
 
@@ -57,4 +57,4 @@ if len(sys.argv) != 2:
 try:
     main()
 except KeyboardInterrupt:
-    sys.exit(0)
+    pass

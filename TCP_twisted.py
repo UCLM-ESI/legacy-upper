@@ -2,14 +2,17 @@
 # Copyright: See AUTHORS and COPYING
 "Usage: {0} <port>"
 
-import sys, time
+import sys
+import time
 
 from twisted.internet.protocol import Factory, Protocol
 from twisted.internet import reactor
 
+
 def upper(msg):
     time.sleep(1)
     return msg.upper()
+
 
 class Upper(Protocol):
     def connectionMade(self):
@@ -20,6 +23,7 @@ class Upper(Protocol):
 
     def dataReceived(self, data):
         self.transport.write(upper(data))
+
 
 class UpperFactory(Factory):
     protocol = Upper

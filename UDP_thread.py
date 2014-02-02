@@ -1,27 +1,32 @@
-#!/usr/bin/python
+#!/usr/bin/python3
 # Copyright: See AUTHORS and COPYING
 "Usage: {0} <port>"
 
 import sys
-from socket import *
-import thread, threading, time
+import socket
+import thread
+import threading
+import time
 
 lock = threading.Lock()
+
 
 def upper(msg):
     time.sleep(1)
     return msg.upper()
+
 
 def handle(sock, msg, client, n):
     print 'New request', n, client
     with lock:
         try:
             sock.sendto(upper(msg), client)
-        except error, e:
+        except socket.error as e:
             print e, client
 
+
 def main():
-    sock = socket(AF_INET, SOCK_DGRAM)
+    sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
     sock.bind(('', int(sys.argv[1])))
 
     n = 0
@@ -38,4 +43,4 @@ if len(sys.argv) != 2:
 try:
     main()
 except KeyboardInterrupt:
-    sys.exit(0)
+    pass
