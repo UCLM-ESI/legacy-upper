@@ -4,27 +4,32 @@
 
 import sys
 import threading
-import thread
+import _thread as thread
 import time
 import select
 import socket
 
 TIMEOUT = 8
 
+host = sys.argv[1]
+port = int(sys.argv[2])
+nclients = int(sys.argv[3])
+message = sys.argv[4]
+
 
 def client(n):
     global r
     sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
-    sock.sendto('{0} [{1}]'.format(sys.argv[4], n),
-                (sys.argv[1], port))
+    data = '{0} [{1}]'.format(message, n).encode()
+    sock.sendto(data, (host, port))
     rd = select.select([sock], [], [], TIMEOUT)[0]
     if rd == []:
-        print('{0} does not reply'.format(n))
+        print('- ERROR: Client {0:3} was not answered after {1}s'.format(n, TIMEOUT))
         r += 1
         return
 
     msg, server = sock.recvfrom(1024)
-    print("Received: '{0}'".format(msg))
+    print("Received: {0}".format(msg))
     sock.close()
 
 
@@ -34,9 +39,8 @@ if len(sys.argv) != 5:
 
 workers = []
 
-port = int(sys.argv[2])
 
-for n in range(int(sys.argv[3])):
+for n in range(nclients):
     worker = threading.Thread(target = client, args = (n,))
     workers.append(worker)
 
@@ -54,4 +58,4 @@ while n < len(workers):
 for w in workers:
     w.join()
 
-print("{0} did not reply".format(r))
+print('- Clients never served: {}'.format(r))
