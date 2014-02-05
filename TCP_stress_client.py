@@ -4,13 +4,13 @@
 
 import sys
 import threading
-import thread
+import _thread as thread
 import time
 import select
 import socket
 
 TIMEOUT = 30
-queries = ['hello', 'world', 'bye', 'people']
+queries = "twenty tiny tigers take two taxis to town".split()
 
 
 def client(n):
@@ -19,20 +19,25 @@ def client(n):
     sock.connect((sys.argv[1], port))
 
     for q in queries:
-        data = '{0} [{1}]'.format(q, n)
+        data = '{0} [{1}]'.format(q, n).encode()
         sock.send(data)
 
-        reply = ''
+        reply = bytes()
         while len(reply) < len(data):
             rd = select.select([sock], [], [], TIMEOUT)[0]
             if not rd:
-                print('- Client {0} does not respond after {1}s'.format(n, TIMEOUT))
+                print('- ERROR: Client {0:3} was not answered after {1}s, aborting'.format(
+                    n, TIMEOUT))
                 r += 1
                 return
 
-            reply += sock.recv(32)
+            try:
+                reply += sock.recv(32)
+            except ConnectionResetError:
+                print('- ERROR: Client {0:3}: connection reset'.format(n))
+                return
 
-        print("- Received: '{0}'".format(reply))
+        print("- Received: {0}".format(reply))
 
     sock.close()
 
@@ -61,5 +66,4 @@ for t in threads:
 for t in threads:
     t.join()
 
-if r:
-    print('- {0} clients did not reply'.format(r))
+print('- Clients never served: {}'.format(r))
