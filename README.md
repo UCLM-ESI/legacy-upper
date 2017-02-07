@@ -26,12 +26,12 @@ UDP
 * [multiprocess server with SocketServer] [udp-SS-fork]
 
 
-[udp-client]:    https://bitbucket.org/arco_group/upper/raw/tip/UDP_client.py
-[udp-server]:    https://bitbucket.org/arco_group/upper/raw/tip/UDP_server.py
-[udp-SS]:        https://bitbucket.org/arco_group/upper/raw/tip/UDP_SS.py
+[udp-client]: https://bitbucket.org/arco_group/upper/raw/tip/UDP_client.py
+[udp-server]: https://bitbucket.org/arco_group/upper/raw/tip/UDP_server.py
+[udp-SS]: https://bitbucket.org/arco_group/upper/raw/tip/UDP_SS.py
 
-[udp-fork]:      https://bitbucket.org/arco_group/upper/raw/tip/UDP_fork.py
-[udp-SS-fork]:   https://bitbucket.org/arco_group/upper/raw/tip/UDP_SS_fork.py
+[udp-fork]: https://bitbucket.org/arco_group/upper/raw/tip/UDP_fork.py
+[udp-SS-fork]: https://bitbucket.org/arco_group/upper/raw/tip/UDP_SS_fork.py
 
 
 TCP
@@ -54,18 +54,18 @@ TCP
 * [async server with twisted] [tcp-twisted]
 
 
-[tcp-client]:    https://bitbucket.org/arco_group/upper/raw/tip/TCP_client.py
-[tcp-server]:    https://bitbucket.org/arco_group/upper/raw/tip/TCP_server.py
-[tcp-SS]:        https://bitbucket.org/arco_group/upper/raw/tip/TCP_SS.py
+[tcp-client]: https://bitbucket.org/arco_group/upper/raw/tip/TCP_client.py
+[tcp-server]: https://bitbucket.org/arco_group/upper/raw/tip/TCP_server.py
+[tcp-SS]: https://bitbucket.org/arco_group/upper/raw/tip/TCP_SS.py
 
-[tcp-fork]:      https://bitbucket.org/arco_group/upper/raw/tip/TCP_fork.py
-[tcp-SS-fork]:   https://bitbucket.org/arco_group/upper/raw/tip/TCP_SS_fork.py
-[tcp-process]:   https://bitbucket.org/arco_group/upper/raw/tip/TCP_process.py
-[tcp-worker]:    https://bitbucket.org/arco_group/upper/raw/tip/TCP_workers.py
+[tcp-fork]: https://bitbucket.org/arco_group/upper/raw/tip/TCP_fork.py
+[tcp-SS-fork]: https://bitbucket.org/arco_group/upper/raw/tip/TCP_SS_fork.py
+[tcp-process]: https://bitbucket.org/arco_group/upper/raw/tip/TCP_process.py
+[tcp-worker]: https://bitbucket.org/arco_group/upper/raw/tip/TCP_workers.py
 
-[tcp-thread]:    https://bitbucket.org/arco_group/upper/raw/tip/TCP_thread.py
+[tcp-thread]: https://bitbucket.org/arco_group/upper/raw/tip/TCP_thread.py
 [tcp-SS-thread]: https://bitbucket.org/arco_group/upper/raw/tip/TCP_SS_thread.py
 
-[tcp-select]:    https://bitbucket.org/arco_group/upper/raw/tip/TCP_select.py
-[tcp-asyncore]:  https://bitbucket.org/arco_group/upper/raw/tip/TCP_asyncore.py
-[tcp-twisted]:   https://bitbucket.org/arco_group/upper/raw/tip/TCP_twisted.py
+[tcp-select]: https://bitbucket.org/arco_group/upper/raw/tip/TCP_select.py
+[tcp-asyncore]: https://bitbucket.org/arco_group/upper/raw/tip/TCP_asyncore.py
+[tcp-twisted]: https://bitbucket.org/arco_group/upper/raw/tip/TCP_twisted.py
