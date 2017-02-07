@@ -9,6 +9,7 @@ pipelines:
   default:
     - step:
         script:
+          - apt-get update
           - apt-get install python2.7
           - pip install -U prego
           - pip --version
