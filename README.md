@@ -51,7 +51,7 @@ TCP
 
 - [async server with select] [tcp-select]
 - [async server with asyncore] [tcp-asyncore]
-- [async server with twisted] [tcp-twisted] (python-2.7)
+- [async server with twisted] [tcp-twisted]
 
 
 [tcp-client]:    https://bitbucket.org/arco_group/upper/raw/tip/TCP_client.py
@@ -69,4 +69,3 @@ TCP
 [tcp-select]:    https://bitbucket.org/arco_group/upper/raw/tip/TCP_select.py
 [tcp-asyncore]:  https://bitbucket.org/arco_group/upper/raw/tip/TCP_asyncore.py
 [tcp-twisted]:   https://bitbucket.org/arco_group/upper/raw/tip/TCP_twisted.py
-
