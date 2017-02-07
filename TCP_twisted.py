@@ -1,4 +1,4 @@
-#!/usr/bin/python
+#!/usr/bin/python3
 # Copyright: See AUTHORS and COPYING
 "Usage: {0} <port>"
 
