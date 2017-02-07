@@ -11,6 +11,6 @@ pipelines:
         script:
           - apt-get update
           - apt-get install -y python2.7
-          - pip install -U prego
-          - pip --version
+          - pip2 --version
+          - pip2 install -U prego
           - prego test/test.py
