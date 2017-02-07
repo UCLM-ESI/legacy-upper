@@ -49,9 +49,9 @@ TCP
 - [threaded server][tcp-thread]
 - [threaded server with SocketServer] [tcp-SS-thread]
 
-- [async server with select] [tcp-select]
-- [async server with asyncore] [tcp-asyncore]
-- [async server with twisted] [tcp-twisted]
+* [async server with select] [tcp-select]
+* [async server with asyncore] [tcp-asyncore]
+*  [async server with twisted] [tcp-twisted]
 
 
 [tcp-client]:    https://bitbucket.org/arco_group/upper/raw/tip/TCP_client.py
