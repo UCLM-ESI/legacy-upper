@@ -37,21 +37,21 @@ UDP
 TCP
 ---
 
-- [client] [tcp-client]
-- [synchronous server] [tcp-server]
-- [synchronous server with SocketServer] [tcp-SS]
+* [client] [tcp-client]
+* [synchronous server] [tcp-server]
+* [synchronous server with SocketServer] [tcp-SS]
 
-- [forking server][tcp-fork]
-- [forking server with SocketServer] [tcp-SS-fork]
-- [forking server with Process] [tcp-process]
-- [preforking server (process workers)] [tcp-worker]
+* [forking server][tcp-fork]
+* [forking server with SocketServer] [tcp-SS-fork]
+* [forking server with Process] [tcp-process]
+* [preforking server (process workers)] [tcp-worker]
 
-- [threaded server][tcp-thread]
-- [threaded server with SocketServer] [tcp-SS-thread]
+* [threaded server][tcp-thread]
+* [threaded server with SocketServer] [tcp-SS-thread]
 
 * [async server with select] [tcp-select]
 * [async server with asyncore] [tcp-asyncore]
-*  [async server with twisted] [tcp-twisted]
+* [async server with twisted] [tcp-twisted]
 
 
 [tcp-client]:    https://bitbucket.org/arco_group/upper/raw/tip/TCP_client.py
