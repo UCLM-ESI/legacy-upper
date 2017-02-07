@@ -18,12 +18,12 @@ You may download this repository with next command:
 UDP
 ---
 
-- [client] [udp-client]
-- [synchronous server] [udp-server]
-- [synchronous server with SocketServer] [udp-SS]
+* [client] [udp-client]
+* [synchronous server] [udp-server]
+* [synchronous server with SocketServer] [udp-SS]
 
-- [multiprocess server][udp-fork]
-- [multiprocess server with SocketServer] [udp-SS-fork]
+* [multiprocess server][udp-fork]
+* [multiprocess server with SocketServer] [udp-SS-fork]
 
 
 [udp-client]:    https://bitbucket.org/arco_group/upper/raw/tip/UDP_client.py
