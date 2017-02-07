@@ -11,4 +11,4 @@ pipelines:
         script:
           - pip install -U prego
           - pip --version
-          - tox --version
+          - prego test/test.py
