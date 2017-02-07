@@ -10,7 +10,7 @@ pipelines:
     - step:
         script:
           - apt-get update
-          - apt-get install python2.7
+          - apt-get install -y python2.7
           - pip install -U prego
           - pip --version
           - prego test/test.py
