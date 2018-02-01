@@ -13,7 +13,7 @@ func main() {
 		os.Exit(1)
 	}
 
-	conn, err := net.Dial("tcp", os.Args[1]+":"+os.Args[2])
+	conn, err := net.Dial("tcp", net.JoinHostPort(os.Args[1], os.Args[2]))
 	if err != nil {
 		fmt.Println("Conection error")
 		os.Exit(2)
@@ -21,15 +21,16 @@ func main() {
 
 	defer conn.Close()
 
-	input := bufio.NewReader(os.Stdin)
-	var request string
-	var reply = make([]byte, 1024)
+	stdin := bufio.NewReader(os.Stdin)
+	remote := bufio.NewReader(conn)
+	var request, reply string
 
 	for {
-		request, _ = input.ReadString('\n')
-		conn.Write([]byte(request))
-		conn.Read(reply)
-		fmt.Print(string(reply))
+		request, _ = stdin.ReadString('\n')
+		fmt.Fprintf(conn, request)
+
+		reply, _ = remote.ReadString('\n')
+		fmt.Print(reply)
 	}
 
 }
