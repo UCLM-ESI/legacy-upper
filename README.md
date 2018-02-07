@@ -2,8 +2,7 @@ Python-3 TCP and UDP servers and clients
 ========================================
 
 These examples implement a very simple service called ``upper``. The ``upper`` servers
-reply to the client the text message that they send to it (as the ``echo`` service), but
-converted to uppercase.
+reply to the client the uppercase version of the text message that it sends.
 
 As they have a teaching objective. I sacrificed error handling (like exceptions) for
 readability and size. A right implementation should add that mechanisms.
