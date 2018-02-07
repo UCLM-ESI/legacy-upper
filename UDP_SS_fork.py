@@ -8,7 +8,7 @@ from socketserver import DatagramRequestHandler, ForkingUDPServer
 
 
 def upper(msg):
-    time.sleep(1)
+    time.sleep(1)  # simulates a more complex job
     return msg.upper()
 
 

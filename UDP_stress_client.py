@@ -11,6 +11,10 @@ import socket
 
 TIMEOUT = 8
 
+if len(sys.argv) != 5:
+    print(__doc__.format(__file__))
+    sys.exit(1)
+
 host = sys.argv[1]
 port = int(sys.argv[2])
 nclients = int(sys.argv[3])
@@ -32,10 +36,6 @@ def client(n):
     print("Received: {0}".format(msg))
     sock.close()
 
-
-if len(sys.argv) != 5:
-    print(__doc__.format(__file__))
-    sys.exit(1)
 
 workers = []
 

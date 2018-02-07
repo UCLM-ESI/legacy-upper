@@ -1,6 +1,7 @@
-#!/usr/bin/python
+#!/usr/bin/prego
 # -*- coding:utf-8; tab-width:4; mode:python -*-
 
+import glob
 from hamcrest import is_not, contains_string
 from prego import TestCase, Task, context, terminated
 from prego.net import localhost, listen_port
@@ -10,6 +11,18 @@ def wait_clients(clients):
     task = Task('wait clients end')
     for client in clients:
         task.wait_that(client, terminated(), timeout=60)
+
+
+class HelpTests(TestCase):
+    def test_help(self):
+        for fname in glob.glob('*.py'):
+            if 'stress' in fname or 'client' in fname:
+                continue
+
+            app = Task()
+            app.command('./{}'.format(fname), expected=1)
+            app.assert_that(app.lastcmd.stdout.content,
+                        contains_string('Usage: ./{} <port>'.format(fname)))
 
 
 class UDPTests(TestCase):
