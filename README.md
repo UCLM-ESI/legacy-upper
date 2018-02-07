@@ -7,7 +7,7 @@ reply to the client the uppercase version of the text message that it sends.
 As they have a teaching objective. I sacrificed error handling (like exceptions) for
 readability and size. A right implementation should add that mechanisms.
 
-You should install ´´mercurial´´ software in your computer and download this repository with next command:
+You should install ``mercurial`` software in your computer and download this repository with next command:
 
     :::bash
 
