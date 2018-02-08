@@ -13,57 +13,67 @@ TIMEOUT = 30
 queries = "twenty tiny tigers take two taxis to town".split()
 
 
-def client(n):
-    global r
-    sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-    sock.connect((sys.argv[1], port))
+class ClientError(Exception):
+    pass
 
-    for q in queries:
-        data = '{0} [{1}]'.format(q, n).encode()
-        sock.send(data)
 
+class Client(threading.Thread):
+    def __init__(self, index):
+        super().__init__()
+        self.index = index
+        self.was_ok = True
+
+    def run(self):
+        self.sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+        self.sock.connect((sys.argv[1], port))
+
+        try:
+            for query in queries:
+                data = '{0} [{1}]'.format(query, self.index).encode()
+                self.sock.send(data)
+                reply = self.receive(len(data))
+                print("- Received: {0}".format(reply))
+
+        except ClientError as e:
+            print(e)
+            self.was_ok = False
+
+        self.sock.close()
+
+    def receive(self, size):
         reply = bytes()
-        while len(reply) < len(data):
-            rd = select.select([sock], [], [], TIMEOUT)[0]
+        while len(reply) < size:
+            rd = select.select([self.sock], [], [], TIMEOUT)[0]
             if not rd:
-                print('- ERROR: Client {0:3} was not answered after {1}s, aborting'.format(
-                    n, TIMEOUT))
-                r += 1
-                return
+                raise ClientError("- ERROR: Client {0:3} didn't get reply after {1}s, aborting".format(
+                    self.index, TIMEOUT))
 
             try:
-                reply += sock.recv(32)
-            except ConnectionResetError:
-                print('- ERROR: Client {0:3}: connection reset'.format(n))
-                return
+                reply += self.sock.recv(32)
+            except socket.error:
+                raise ClientError("- ERROR: Client {0:3}: connection reset".format(n))
 
-        print("- Received: {0}".format(reply))
-
-    sock.close()
+        return reply
 
 
 if len(sys.argv) != 4:
     print(__doc__.format(__file__))
     sys.exit(1)
 
-
-threads = []
 port = int(sys.argv[2])
 nclients = int(sys.argv[3])
 
-for n in range(nclients):
-    threads.append(threading.Thread(target = client, args = (n,)))
+clients = [Client(n) for n in range(nclients)]
 
-r = 0
-
-for t in threads:
+for client in clients:
     try:
-        t.start()
+        client.start()
     except thread.error as e:
         print(e)
         time.sleep(.1)
 
-for t in threads:
-    t.join()
+for client in clients:
+    client.join()
 
-print('- Clients never served: {}'.format(r))
+print('- Clients never served: {}'.format(
+    len([c for c in clients if not c.was_ok])))
