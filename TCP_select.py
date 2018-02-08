@@ -26,8 +26,20 @@ def ChildHandler(s):
 def ParentHandler(s):
     child_sock, client = s.accept()
     socks.append(child_sock)
-    print('Client connected: {0}, Total {1} sockets'.format(
+    print('+ Client connected: {0}, Total {1} sockets'.format(
         client, len(socks)))
+
+
+def show_status(socks, read):
+    def socket_peer(sock):
+        try:
+            return sock.getpeername()
+        except OSError:
+            return "master"
+
+    print("open:  {}\nready: {}\n---".format(
+        [socket_peer(x) for x in socks],
+        [socket_peer(x) for x in read_ready]))
 
 
 if len(sys.argv) != 2:
@@ -42,13 +54,12 @@ ss.listen(30)
 socks = [ss]
 
 while 1:
-    rd = select.select(socks, [], [])[0]
+    read_ready = select.select(socks, [], [])[0]
 
-    print(socks)
-    print(rd)
-
-    for i in rd:
+    for i in read_ready:
         if i == ss:
             ParentHandler(i)
         else:
             ChildHandler(i)
+
+    show_status(socks, read_ready)
