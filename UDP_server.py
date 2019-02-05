@@ -19,7 +19,8 @@ def handle(sock, msg, client, n):
 
 def main():
     sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
-    sock.bind(('', int(sys.argv[1])))
+    address = ('', int(sys.argv[1]))
+    sock.bind(address)
 
     n = 0
     while 1:

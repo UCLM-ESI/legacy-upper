@@ -125,8 +125,8 @@ class TCPTests(TestCase):
     def test_asyncore(self):
         self.run_server('TCP_asyncore.py')
 
-    def test_twisted(self):
-        self.run_server('TCP_twisted.py')
+#    def test_twisted(self):
+#        self.run_server('TCP_twisted.py')
 
 
 class TCP6Tests(TestCase):
