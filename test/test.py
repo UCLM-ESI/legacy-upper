@@ -22,7 +22,7 @@ class HelpTests(TestCase):
             app = Task()
             app.command('./{}'.format(fname), expected=1)
             app.assert_that(app.lastcmd.stdout.content,
-                        contains_string('Usage: ./{} <port>'.format(fname)))
+                            contains_string('Usage: ./{} <port>'.format(fname)))
 
 
 class UDPTests(TestCase):
