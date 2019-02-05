@@ -23,6 +23,8 @@ class UpperHandler(StreamRequestHandler):
 
             self.wfile.write(upper(data))
 
+        print('Client disconnected: {0}'.format(self.client_address))
+
 
 class customThreadingTCPServer(ThreadingTCPServer):
     allow_reuse_address = True

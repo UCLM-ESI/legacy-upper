@@ -23,6 +23,8 @@ class UpperHandler(StreamRequestHandler):
 
             self.wfile.write(upper(data))
 
+        print('Client disconnected: {0}'.format(self.client_address))
+
 
 class customForkingTCPServer(ForkingTCPServer):
     allow_reuse_address = True

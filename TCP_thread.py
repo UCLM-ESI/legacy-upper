@@ -22,6 +22,8 @@ def handle(sock, client, n):
         sock.sendall(upper(data))
     sock.close()
 
+    print('Client disconnected: {} {}'.format(n, client))
+
 
 if len(sys.argv) != 2:
     print(__doc__.format(__file__))
