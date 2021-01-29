@@ -30,7 +30,7 @@ class Client(threading.Thread):
                 data = '{0} [{1}]'.format(query, self.index).encode()
                 self.sock.sendto(data, (host, port))
                 reply = self.receive()
-                print("Received: {0}".format(reply))
+                print(f"Received: {reply}")
         except ClientError as e:
             print(e)
             self.was_ok = False
@@ -48,7 +48,7 @@ class Client(threading.Thread):
 
 
 if len(sys.argv) != 4:
-    print(__doc__.format(__file__))
+    print(__doc__.format(sys.argv[0]))
     sys.exit(1)
 
 host = sys.argv[1]
@@ -67,5 +67,5 @@ for client in clients:
 for w in clients:
     w.join()
 
-print('- Clients never served: {}'.format(
+print("- Clients never served: {}".format(
     len([c for c in clients if not c.was_ok])))

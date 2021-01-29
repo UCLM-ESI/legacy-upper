@@ -57,7 +57,7 @@ class Client(threading.Thread):
 
 
 if len(sys.argv) != 4:
-    print(__doc__.format(__file__))
+    print(__doc__.format(sys.argv[0]))
     sys.exit(1)
 
 port = int(sys.argv[2])

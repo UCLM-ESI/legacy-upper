@@ -38,12 +38,12 @@ class ProcessPool(object):
 
 
 def upper(msg):
-    time.sleep(1)  # simulates a more complex job
+    time.sleep(1)  # simulates a complex job
     return msg.upper()
 
 
 def handle(sock, client):
-    print('Client connected: {0}'.format(client))
+    print(f"Client connected: {client}")
     while 1:
         data = sock.recv(32)
         if not data:
@@ -51,7 +51,7 @@ def handle(sock, client):
         sock.sendall(upper(data))
 
     sock.close()
-    print('Client disconnected: {0}'.format(client))
+    print(f"Client disconnected: {client}")
 
 
 def main():
@@ -70,7 +70,7 @@ def main():
 
 
 if len(sys.argv) != 2:
-    print(__doc__.format(__file__))
+    print(__doc__.format(sys.argv[0]))
     sys.exit(1)
 
 try:

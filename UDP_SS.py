@@ -8,7 +8,7 @@ from socketserver import DatagramRequestHandler, UDPServer
 
 
 def upper(msg):
-    time.sleep(1)  # simulates a more complex job
+    time.sleep(1)  # simulates a complex job
     return msg.upper()
 
 
@@ -19,13 +19,13 @@ class UpperHandler(DatagramRequestHandler):
 
     def handle(self):
         self.n += 1
-        print('New request:', self.n, self.client_address)
+        print("New request: {} {}".format(self.n, self.client_address))
         msg = self.rfile.read()
         self.wfile.write(upper(msg))
 
 
 if len(sys.argv) != 2:
-    print(__doc__.format(__file__))
+    print(__doc__.format(sys.argv[0]))
     sys.exit(1)
 
 server = UDPServer(('', int(sys.argv[1])), UpperHandler)

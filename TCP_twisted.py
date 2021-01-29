@@ -10,16 +10,16 @@ from twisted.internet import reactor
 
 
 def upper(msg):
-    time.sleep(1)  # simulates a more complex job
+    time.sleep(1)  # simulates a complex job
     return msg.upper()
 
 
 class Upper(Protocol):
     def connectionMade(self):
-        print('Client connected: {0}'.format(self.transport.client))
+        print("Client connected: {}".format(self.transport.client))
 
     def connectionLost(self, reason):
-        print('Client disconnected: {0}'.format(self.transport.client))
+        print("Client disconnected: {}".format(self.transport.client))
 
     def dataReceived(self, data):
         self.transport.write(upper(data))
@@ -30,7 +30,7 @@ class UpperFactory(Factory):
 
 
 if len(sys.argv) != 2:
-    print(__doc__.format(__file__))
+    print(__doc__.format(sys.argv[0]))
     sys.exit(1)
 
 reactor.listenTCP(int(sys.argv[1]), UpperFactory())

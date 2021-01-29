@@ -8,12 +8,12 @@ import socket
 
 
 def upper(msg):
-    time.sleep(1)  # simulates a more complex job
+    time.sleep(1)  # simulates a complex job
     return msg.upper()
 
 
 def handle(sock, msg, client, n):
-    print("New request {0} {1}".format(n, client))
+    print(f"New request {n} {client}")
     sock.sendto(upper(msg), client)
 
 
@@ -30,7 +30,7 @@ def main():
 
 
 if len(sys.argv) != 2:
-    print(__doc__.format(__file__))
+    print(__doc__.format(sys.argv[0]))
     sys.exit(1)
 
 try:

@@ -6,7 +6,7 @@ import sys
 import socket
 
 if len(sys.argv) != 3:
-    print(__doc__.format(__file__))
+    print(__doc__.format(sys.argv[0]))
     sys.exit(1)
 
 

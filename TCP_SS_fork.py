@@ -9,13 +9,13 @@ from socketserver import StreamRequestHandler, ForkingTCPServer
 
 
 def upper(msg):
-    time.sleep(1)  # simulates a more complex job
+    time.sleep(1)  # simulates a complex job
     return msg.upper()
 
 
 class UpperHandler(StreamRequestHandler):
     def handle(self):
-        print('Client connected: {0}'.format(self.client_address))
+        print("Client connected: {}".format(self.client_address))
         while 1:
             data = os.read(self.rfile.fileno(), 32)
             if not data:
@@ -23,7 +23,7 @@ class UpperHandler(StreamRequestHandler):
 
             self.wfile.write(upper(data))
 
-        print('Client disconnected: {0}'.format(self.client_address))
+        print("Client disconnected: {}".format(self.client_address))
 
 
 class customForkingTCPServer(ForkingTCPServer):
@@ -31,7 +31,7 @@ class customForkingTCPServer(ForkingTCPServer):
 
 
 if len(sys.argv) != 2:
-    print(__doc__.format(__file__))
+    print(__doc__.format(sys.argv[0]))
     sys.exit(1)
 
 server = customForkingTCPServer(('', int(sys.argv[1])), UpperHandler)

@@ -9,7 +9,7 @@ import socket
 
 
 def upper(msg):
-    time.sleep(1)  # simulates a more complex job
+    time.sleep(1)  # simulates a complex job
     return msg.upper()
 
 
@@ -26,7 +26,7 @@ def ChildHandler(s):
 def ParentHandler(s):
     child_sock, client = s.accept()
     socks.append(child_sock)
-    print('+ Client connected: {0}, Total {1} sockets'.format(
+    print("+ Client connected: {}, Total {} sockets".format(
         client, len(socks)))
 
 
@@ -43,7 +43,7 @@ def show_status(socks, read):
 
 
 if len(sys.argv) != 2:
-    print(__doc__.format(__file__))
+    print(__doc__.format(sys.argv[0]))
     sys.exit(1)
 
 ss = socket.socket(socket.AF_INET, socket.SOCK_STREAM)

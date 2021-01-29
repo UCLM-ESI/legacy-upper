@@ -9,7 +9,7 @@ import socket
 
 
 def upper(msg):
-    time.sleep(1)  # simulates a more complex job
+    time.sleep(1)  # simulates a complex job
     return msg.upper()
 
 
@@ -42,12 +42,12 @@ class ParentHandler(asyncore.dispatcher):
 
     def handle_accept(self):
         child_sock, client = self.accept()
-        print('Client connected: {}'.format(client))
+        print(f"Client connected: {client}")
         ChildHandler(child_sock)
 
 
 if len(sys.argv) != 2:
-    print(__doc__.format(__file__))
+    print(__doc__.format(sys.argv[0]))
     sys.exit(1)
 
 ParentHandler()
