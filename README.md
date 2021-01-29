@@ -22,7 +22,7 @@ UDP
 * [multiprocess server][udp-fork]
 * [multiprocess server with SocketServer][udp-SS-fork]
 
-https://raw.githubusercontent.com/UCLM-ESI/upper/master/UDP_client.py
+
 [udp-client]: https://raw.githubusercontent.com/UCLM-ESI/upper/master/UDP_client.py
 [udp-server]: https://raw.githubusercontent.com/UCLM-ESI/upper/master/UDP_server.py
 [udp-SS]:     https://raw.githubusercontent.com/UCLM-ESI/upper/master/UDP_SS.py
