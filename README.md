@@ -5,9 +5,9 @@ These examples implement a very simple service called ``upper``. The ``upper`` s
 reply to the client the uppercase version of the text message that it sends.
 
 As they have a teaching objective. I sacrificed error handling (like exceptions) for
-readability and size. A right implementation should add that mechanisms.
+readability and size. A right implementation should add those mechanisms.
 
-You should install ``git`` software in your computer and download this repository with next command:
+You should install ``git`` software and download this repository by this way:
 
     $ git clone https://github.com/UCLM-ESI/upper.git
 
