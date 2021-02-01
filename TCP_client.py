@@ -32,4 +32,4 @@ if len(sys.argv) != 3:
 try:
     main()
 except KeyboardInterrupt:
-    pass
+    print("exited")

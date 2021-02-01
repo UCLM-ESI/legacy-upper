@@ -38,4 +38,7 @@ if len(sys.argv) != 2:
     print(__doc__.format(sys.argv[0]))
     sys.exit(1)
 
-asyncio.run(main(sys.argv[1]))
+try:
+    asyncio.run(main(sys.argv[1]))
+except KeyboardInterrupt:
+    print("exited")
