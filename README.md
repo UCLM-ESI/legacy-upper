@@ -17,10 +17,10 @@ UDP
 
 * [client][udp-client]
 * [synchronous server][udp-server]
-* [synchronous server with SocketServer][udp-SS]
+* [synchronous server with SocketServer][udp-SS]       | [doc][socketserver]
 
-* [multiprocess server][udp-fork]
-* [multiprocess server with SocketServer][udp-SS-fork]
+* [multiprocess server][udp-fork]                      | [doc][fork]
+* [multiprocess server with SocketServer][udp-SS-fork] | [doc][socketserver]
 
 
 [udp-client]: https://raw.githubusercontent.com/UCLM-ESI/upper/master/UDP_client.py
@@ -36,17 +36,17 @@ TCP
 
 * [client][tcp-client]
 * [synchronous server][tcp-server]
-* [synchronous server with SocketServer][tcp-SS] ([doc][socketserver])
+* [synchronous server with SocketServer][tcp-SS]                 | [doc][socketserver]
 
-* [forking server][tcp-fork]
-* [forking server with SocketServer][tcp-SS-fork]
+* [forking server][tcp-fork]                                     | [doc](fork] 
+* [forking server with SocketServer][tcp-SS-fork]                | [doc][socketserver]
 * [forking server with multiprocessing.Process][tcp-process]     | [doc][multiprocessing]
 * [preforking server with multiprocessing Process][tcp-prefork]  | [doc][multiprocessing]
 
 * [threaded server][tcp-thread]
-* [threaded server with SocketServer][tcp-SS-thread]
+* [threaded server with SocketServer][tcp-SS-thread]             | [doc][socketserver]
 
-* [async server with select][tcp-select] | [doc][select]
+* [async server with select][tcp-select]                                     | [doc][select]
 * [async server with asyncio transports and protocols][tcp-asyncio-protocol] | [doc][asyncio-protocol]
 * [async server with asyncio streams][tcp-asyncio-streams]                   | [doc][asyncio-stream]
 * [DEPRECATED] [async server with asyncore][tcp-asyncore]                    | [doc][asyncore]
@@ -71,6 +71,7 @@ TCP
 [tcp-asyncore]:         https://raw.githubusercontent.com/UCLM-ESI/upper/master/TCP_asyncore.py
 [tcp-twisted]:          https://raw.githubusercontent.com/UCLM-ESI/upper/master/TCP_twisted.py
 
+[fork]:             https://docs.python.org/3/library/os.html#os.fork
 [socketserver]:     https://docs.python.org/3/library/socketserver.html
 [select]:           https://docs.python.org/3/library/socketserver.html
 [multiprocessing]:  https://docs.python.org/3/library/multiprocessing.html
