@@ -27,5 +27,6 @@ jobs:
         pypath=$(pip3 show -f PyHamcrest | grep ^Location | awk '{print $2}')
         echo PYTHONPATH=$pypath
         export PYTHONPATH=$pypath
+        python3 -m site --user-site
         python3 -c 'import site; print("{}\n{}".format(site.getsitepackages(), site.getusersitepackages()))'
         nosetests3 -v test/test.py
