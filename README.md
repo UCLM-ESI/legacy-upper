@@ -38,12 +38,12 @@ TCP
 * [synchronous server][tcp-server]
 * [synchronous server with SocketServer][tcp-SS]                 | [doc][socketserver]
 
-* [forking server][tcp-fork]                                     | [doc](fork] 
+* [forking server][tcp-fork]                                     | [doc][fork] 
 * [forking server with SocketServer][tcp-SS-fork]                | [doc][socketserver]
 * [forking server with multiprocessing.Process][tcp-process]     | [doc][multiprocessing]
 * [preforking server with multiprocessing Process][tcp-prefork]  | [doc][multiprocessing]
 
-* [threaded server][tcp-thread]
+* [threaded server][tcp-thread]                                  | [doc][_thread]
 * [threaded server with SocketServer][tcp-SS-thread]             | [doc][socketserver]
 
 * [async server with select][tcp-select]                                     | [doc][select]
@@ -72,6 +72,7 @@ TCP
 [tcp-twisted]:          https://raw.githubusercontent.com/UCLM-ESI/upper/master/TCP_twisted.py
 
 [fork]:             https://docs.python.org/3/library/os.html#os.fork
+[_thread]:          https://docs.python.org/3/library/_thread.html
 [socketserver]:     https://docs.python.org/3/library/socketserver.html
 [select]:           https://docs.python.org/3/library/socketserver.html
 [multiprocessing]:  https://docs.python.org/3/library/multiprocessing.html
