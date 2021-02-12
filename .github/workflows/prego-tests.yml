@@ -27,4 +27,5 @@ jobs:
         pypath=$(pip3 show -f PyHamcrest | grep ^Location | awk '{print $2}')
         echo PYTHONPATH=$pypath
         export PYTHONPATH=$pypath
+        pip show -f prego3
         nosetests3 -v test/test.py
