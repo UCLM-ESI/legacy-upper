@@ -21,7 +21,7 @@ jobs:
       run: |
         sudo apt-get install -y python3-twisted python3-nose
         python -m pip install --upgrade pip
-        python -m pip install prego3
+        pip install prego3
     - name: Test with prego
       run: |
         nosetests3 -v test/test.py
