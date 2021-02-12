@@ -36,20 +36,20 @@ TCP
 
 * [client][tcp-client]
 * [synchronous server][tcp-server]
-* [synchronous server with SocketServer][tcp-SS] ([doc](https://docs.python.org/3/library/socketserver.html))
+* [synchronous server with SocketServer][tcp-SS] ([doc][socketserver])
 
 * [forking server][tcp-fork]
 * [forking server with SocketServer][tcp-SS-fork]
-* [forking server with multiprocessing.Process][tcp-process]
-* [preforking server with multiprocessing Process][tcp-prefork]
+* [forking server with multiprocessing.Process][tcp-process]     | [doc][multiprocessing]
+* [preforking server with multiprocessing Process][tcp-prefork]  | [doc][multiprocessing]
 
 * [threaded server][tcp-thread]
 * [threaded server with SocketServer][tcp-SS-thread]
 
-* [async server with select][tcp-select] ([doc](https://docs.python.org/3/library/select.html))
-* [async server with asyncio transports and protocols][tcp-asyncio-protocol] ([doc](https://docs.python.org/3/library/asyncio-protocol.html))
-* [async server with asyncio streams][tcp-asyncio-streams] ([doc](https://docs.python.org/3/library/asyncio-stream.html))
-* [DEPRECATED] [async server with asyncore][tcp-asyncore] ([doc](https://docs.python.org/3/library/asyncore.html))
+* [async server with select][tcp-select] | [doc][select]
+* [async server with asyncio transports and protocols][tcp-asyncio-protocol] | [doc][asyncio-protocol]
+* [async server with asyncio streams][tcp-asyncio-streams]                   | [doc][asyncio-stream]
+* [DEPRECATED] [async server with asyncore][tcp-asyncore]                    | [doc][asyncore]
 * [async server with twisted][tcp-twisted]
 
 
@@ -70,3 +70,10 @@ TCP
 [tcp-asyncio-streams]:  https://raw.githubusercontent.com/UCLM-ESI/upper/master/TCP_asyncio_streams.py 
 [tcp-asyncore]:         https://raw.githubusercontent.com/UCLM-ESI/upper/master/TCP_asyncore.py
 [tcp-twisted]:          https://raw.githubusercontent.com/UCLM-ESI/upper/master/TCP_twisted.py
+
+[socketserver]:     https://docs.python.org/3/library/socketserver.html
+[select]:           https://docs.python.org/3/library/socketserver.html
+[multiprocessing]:  https://docs.python.org/3/library/multiprocessing.html
+[asyncio-protocol]: https://docs.python.org/3/library/asyncio-protocol.html
+[asyncio-stream]:   https://docs.python.org/3/library/asyncio-stream.html
+[asyncore]:         https://docs.python.org/3/library/asyncore.html 
