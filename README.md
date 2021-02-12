@@ -40,8 +40,8 @@ TCP
 
 * [forking server][tcp-fork]
 * [forking server with SocketServer][tcp-SS-fork]
-* [forking server with Process][tcp-process]
-* [preforking server (process workers)][tcp-worker]
+* [forking server with multiprocessing.Process][tcp-process]
+* [preforking server with multiprocessing.Process)][tcp-prefork]
 
 * [threaded server][tcp-thread]
 * [threaded server with SocketServer][tcp-SS-thread]
