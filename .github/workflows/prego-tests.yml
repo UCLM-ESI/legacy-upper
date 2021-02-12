@@ -24,4 +24,7 @@ jobs:
         pip install prego3
     - name: Test with prego
       run: |
+        pypath=$(pip3 show -f PyHamcrest | grep ^Location | awk '{print $2}')
+        echo PYTHONPATH=$pypath
+        export PYTHONPATH=$pypath
         nosetests3 -v test/test.py
