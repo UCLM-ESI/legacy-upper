@@ -13,5 +13,8 @@ print:
 	   a2ps $$i; \
 	done
 
+test:
+	nosetests3 -v test/test.py
+
 clean:
 	$(RM) *~ *.pyc $(SRC:.py=.html) *.rtf

@@ -116,8 +116,8 @@ class TCPTests(TestCase):
     def test_process(self):
         self.run_server('TCP_process.py')
 
-    def test_workers(self):
-        self.run_server('TCP_workers.py')
+    def test_prefork(self):
+        self.run_server('TCP_prefork.py')
 
     def test_thread(self):
         self.run_server('TCP_thread.py')
@@ -130,9 +130,6 @@ class TCPTests(TestCase):
 
     def test_asyncore(self):
         self.run_server('TCP_asyncore.py')
-
-#    def test_twisted(self):
-#        self.run_server('TCP_twisted.py')
 
 
 class TCP6Tests(TestCase):
