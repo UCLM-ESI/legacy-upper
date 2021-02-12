@@ -1,7 +1,4 @@
-# This workflow will install Python dependencies, run tests and lint with a single version of Python
-# For more information see: https://help.github.com/actions/language-and-framework-guides/using-python-with-github-actions
-
-name: upper
+name: test
 
 on:
   push:
@@ -22,9 +19,9 @@ jobs:
         python-version: 3.9
     - name: Install dependencies
       run: |
-        sudo apt-get install -y python3-twisted
+        sudo apt-get install -y python3-twisted python3-nose
         python -m pip install --upgrade pip
-        pip install prego3
+        python -m pip install prego3
     - name: Test with prego
       run: |
-        prego3 test/test.py
+        nosetests3 -v test/test.py
