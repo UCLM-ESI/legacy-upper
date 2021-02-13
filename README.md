@@ -1,5 +1,5 @@
-Python-3 TCP and UDP servers and clients
-========================================
+## Python-3 TCP and UDP servers and clients
+![test](https://github.com/UCLM-ESI/upper/workflows/test/badge.svg)
 
 These examples implement a very simple service called ``upper``. The ``upper`` servers
 reply to the client the uppercase version of the text message that it sends.
