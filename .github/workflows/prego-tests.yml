@@ -31,4 +31,4 @@ jobs:
         python3 -m site --user-site
         python3 -c 'import site; print("- getsitepackages: {}\n- getusersitepackages: {}\n- USER_BASE {}\n--".format(site.getsitepackages(), site.getusersitepackages(), site.USER_BASE))'
         sudo tree /opt/hostedtoolcache/Python/3.9.1/x64/
-        nosetests3 -v test/test.py
+        nosetests3 -v -s test/test.py
