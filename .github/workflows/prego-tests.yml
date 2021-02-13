@@ -13,11 +13,15 @@ jobs:
 
     steps:
     - uses: actions/checkout@v2
+    - name: Set up Python 3.9
+      uses: actions/setup-python@v2
+      with:
+        python-version: 3.9
     - name: Install dependencies
       run: |
         sudo apt-get install -y python3-twisted python3-nose tree
         python -m pip install --upgrade pip
-        sudo pip install prego3
+        pip install prego3
     - name: Test with prego
       run: |
         pypath=$(pip3 show -f PyHamcrest | grep ^Location | awk '{print $2}')
@@ -25,5 +29,5 @@ jobs:
         export PYTHONPATH=$pypath
         python3 -m site --user-site
         python3 -c 'import site; print("- {}\n- {}\n- {}\n--".format(site.getsitepackages(), site.getusersitepackages(), site.USER_BASE))'
-        tree /home/runner/.local
+        sudo tree /home/runner/.local
         nosetests3 -v test/test.py
