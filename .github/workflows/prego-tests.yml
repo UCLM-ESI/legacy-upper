@@ -25,9 +25,10 @@ jobs:
     - name: Test with prego
       run: |
         pypath=$(pip3 show -f PyHamcrest | grep ^Location | awk '{print $2}')
-        echo $pypath
+        echo pyhamcrest location: $pypath
         export PYTHONPATH=$pypath
+        echo site --user-site
         python3 -m site --user-site
-        python3 -c 'import site; print("- {}\n- {}\n- {}\n--".format(site.getsitepackages(), site.getusersitepackages(), site.USER_BASE))'
+        python3 -c 'import site; print("- getsitepackages: {}\n- getusersitepackages: {}\n- USER_BASE {}\n--".format(site.getsitepackages(), site.getusersitepackages(), site.USER_BASE))'
         sudo tree /home/runner/.local
         nosetests3 -v test/test.py
