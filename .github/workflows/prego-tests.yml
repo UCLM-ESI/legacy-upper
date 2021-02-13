@@ -30,4 +30,5 @@ jobs:
         # echo site --user-site
         # python3 -m site --user-site
         # python3 -c 'import site; print("- getsitepackages: {}\n- getusersitepackages: {}\n- USER_BASE {}\n--".format(site.getsitepackages(), site.getusersitepackages(), site.USER_BASE))'       
+        python3 --version
         nosetests3 -v -s test/test.py
