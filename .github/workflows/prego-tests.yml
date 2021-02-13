@@ -19,16 +19,15 @@ jobs:
         python-version: 3.9
     - name: Install dependencies
       run: |
-        sudo apt-get install -y python3-twisted python3-nose tree
+        sudo apt-get install -y python3-twisted python3-nose
         python -m pip install --upgrade pip
         pip install prego3
     - name: Test with prego
       run: |
         pypath=$(pip3 show -f PyHamcrest | grep ^Location | awk '{print $2}')
-        echo pyhamcrest location: $pypath
         export PYTHONPATH=$pypath
-        echo site --user-site
-        python3 -m site --user-site
-        python3 -c 'import site; print("- getsitepackages: {}\n- getusersitepackages: {}\n- USER_BASE {}\n--".format(site.getsitepackages(), site.getusersitepackages(), site.USER_BASE))'
-        sudo tree /opt/hostedtoolcache/Python/3.9.1/x64/
+        # echo pyhamcrest location: $pypath
+        # echo site --user-site
+        # python3 -m site --user-site
+        # python3 -c 'import site; print("- getsitepackages: {}\n- getusersitepackages: {}\n- USER_BASE {}\n--".format(site.getsitepackages(), site.getusersitepackages(), site.USER_BASE))'       
         nosetests3 -v -s test/test.py
