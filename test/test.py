@@ -128,8 +128,11 @@ class TCPTests(TestCase):
     def test_select(self):
         self.run_server('TCP_select.py')
 
-    def test_asyncore(self):
-        self.run_server('TCP_asyncore.py')
+    def test_asyncio_protocol(self):
+        self.run_server('TCP_asyncio_protocol.py')
+
+    def test_asyncio_streams(self):
+        self.run_server('TCP_asyncio_streams.py')
 
 
 class TCP6Tests(TestCase):
