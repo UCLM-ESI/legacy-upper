@@ -15,7 +15,7 @@ def main():
         if not data:
             break
 
-        sent = sock.send(data)
+        sent = sock.sendall(data)
 
         msg = bytes()
         while len(msg) < sent:
