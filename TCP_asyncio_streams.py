@@ -7,8 +7,8 @@ import time
 import asyncio
 
 
-def upper(msg):
-    time.sleep(1)
+async def upper(msg):
+    await asyncio.sleep(1)
     return msg.upper()
 
 
@@ -20,7 +20,7 @@ async def handle(reader, writer):
         data = await reader.read(32)
         if not data:
             break
-        writer.write(upper(data))
+        writer.write(await upper(data))
         await writer.drain()
 
     print(f"Client disconnected: {peername}")
