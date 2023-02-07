@@ -51,7 +51,7 @@ class Client(threading.Thread):
             try:
                 reply += self.sock.recv(32)
             except socket.error:
-                raise ClientError("- ERROR: Client {0:3}: connection reset".format(n))
+                raise ClientError("- ERROR: Client {0:3}: connection reset".format(self.index))
 
         return reply
 
