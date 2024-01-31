@@ -11,13 +11,14 @@ if len(sys.argv) != 3:
 
 
 sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+server_endpoint = (sys.argv[1], int(sys.argv[2]))
 
 while 1:
     data = sys.stdin.readline().strip().encode()
     if not data:
         break
 
-    sock.sendto(data, (sys.argv[1], int(sys.argv[2])))
+    sock.sendto(data, server_endpoint)
     msg, server = sock.recvfrom(1024)
     print("Reply is '{}'".format(msg.decode()))
 
