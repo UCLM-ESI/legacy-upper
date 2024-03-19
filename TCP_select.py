@@ -13,18 +13,18 @@ def upper(msg):
     return msg.upper()
 
 
-def ChildHandler(s):
-    data = s.recv(32)
+def child_handler(sock):
+    data = sock.recv(32)
     if not data:
-        socks.remove(s)
-        s.close()
+        socks.remove(sock)
+        sock.close()
         return
 
-    s.sendall(upper(data))
+    sock.sendall(upper(data))
 
 
-def ParentHandler(s):
-    child_sock, client = s.accept()
+def master_handler(sock):
+    child_sock, client = sock.accept()
     socks.append(child_sock)
     print("+ Client connected: {}, Total {} sockets".format(
         client, len(socks)))
@@ -58,8 +58,8 @@ while 1:
 
     for i in read_ready:
         if i == ss:
-            ParentHandler(i)
+            master_handler(i)
         else:
-            ChildHandler(i)
+            child_handler(i)
 
     show_status(socks, read_ready)
