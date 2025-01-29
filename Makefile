@@ -13,6 +13,7 @@ print:
 	   a2ps $$i; \
 	done
 
+.PHONY: test
 test:
 	nosetests3 -v test/test.py
 
