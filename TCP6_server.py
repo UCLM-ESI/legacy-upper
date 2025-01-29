@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 # Copyright: See AUTHORS and COPYING
-"Usage: {0} <port>"
+"Usage: {0} <host> <port>"
 
 import sys
 import time
@@ -25,15 +25,34 @@ def handle(sock, client):
     print(f"Client disconnected: {client}")
 
 
-if len(sys.argv) != 2:
+def main(host, port):
+    sock = socket.socket(socket.AF_INET6, socket.SOCK_STREAM)
+    sock.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
+    sock.bind((host, port))
+    sock.listen(30)
+
+    while 1:
+        child_sock, client = sock.accept()
+        handle(child_sock, client)
+
+
+if len(sys.argv) != 3:
     print(__doc__.format(sys.argv[0]))
     sys.exit(1)
 
-sock = socket.socket(socket.AF_INET6, socket.SOCK_STREAM)
-sock.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
-sock.bind(('', int(sys.argv[1])))
-sock.listen(30)
+try:
+    main(sys.argv[1], int(sys.argv[2]))
+except KeyboardInterrupt:
+    print("exited")
 
-while 1:
-    child_sock, client = sock.accept()
-    handle(child_sock, client)
+
+'''
+$ ./server.py "::1" 2000
+$ ncat -6 ::1 2000
+
+--
+$ ./server.py "" 2000
+$ echo hello | ncat -6 ::1 2000
+--
+$ echo hello | ncat -4 127.0.0.1 2000
+'''
