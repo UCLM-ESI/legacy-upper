@@ -29,9 +29,7 @@ async def handle(reader, writer):
 
 async def main(port):
     server = await asyncio.start_server(handle, '', port)
-
-    async with server:
-        await server.serve_forever()
+    await server.serve_forever()
 
 
 if len(sys.argv) != 2:
