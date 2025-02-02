@@ -41,9 +41,9 @@ class ParentHandler(asyncore.dispatcher):
         self.listen(30)
 
     def handle_accept(self):
-        child_sock, client = self.accept()
+        conn, client = self.accept()
         print(f"Client connected: {client}")
-        ChildHandler(child_sock)
+        ChildHandler(conn)
 
 
 if len(sys.argv) != 2:

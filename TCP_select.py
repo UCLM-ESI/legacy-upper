@@ -24,8 +24,8 @@ def child_handler(sock):
 
 
 def master_handler(sock):
-    child_sock, client = sock.accept()
-    socks.append(child_sock)
+    conn, client = sock.accept()
+    socks.append(conn)
     print("+ Client connected: {}, Total {} sockets".format(
         client, len(socks)))
 

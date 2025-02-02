@@ -30,8 +30,8 @@ def handle(sock, client):
 def server(sock):
     try:
         while 1:
-            child_sock, client = sock.accept()
-            handle(child_sock, client)
+            conn, client = sock.accept()
+            handle(conn, client)
     except KeyboardInterrupt:
         pass
 

@@ -46,8 +46,8 @@ def main():
     sock.listen(30)
 
     while 1:
-        child_sock, client = sock.accept()
-        start_new_process(handle, (child_sock, client))
+        conn, client = sock.accept()
+        start_new_process(handle, (conn, client))
 
 
 if len(sys.argv) != 2:
