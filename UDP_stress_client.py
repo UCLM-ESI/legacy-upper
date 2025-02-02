@@ -1,71 +1,69 @@
-#!/usr/bin/python3
+#!/usr/bin/env python3
 # Copyright: See AUTHORS and COPYING
 "Usage: {0} <host> <port> <n_clients>"
 
 import sys
-import threading
-import _thread as thread
-import time
-import select
-import socket
+import asyncio
 
-TIMEOUT = 30
 queries = "twenty tiny tigers take two taxis to town".split()
 
 
-class ClientError(Exception):
-    pass
-
-
-class Client(threading.Thread):
-    def __init__(self, index):
-        super().__init__()
+class UDPClientProtocol(asyncio.DatagramProtocol):
+    def __init__(self, index, queries, on_con_lost):
         self.index = index
-        self.was_ok = True
+        self.queries = queries
+        self.transport = None
+        self.on_con_lost = on_con_lost
 
-    def run(self):
-        self.sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
-        try:
-            for query in queries:
-                data = '{0} [{1}]'.format(query, self.index).encode()
-                self.sock.sendto(data, (host, port))
-                reply = self.receive()
-                print(f"Received: {reply}")
-        except ClientError as e:
-            print(e)
-            self.was_ok = False
+    def connection_made(self, transport):
+        self.transport = transport
+        self.send_next_query()
 
-        self.sock.close()
+    def send_next_query(self):
+        if self.queries:
+            query = self.queries.pop(0)
+            data = f"[{self.index:>3}] {query}".encode()
+            self.transport.sendto(data)
+        else:
+            self.transport.close()
+            self.on_con_lost.set_result(True)
 
-    def receive(self):
-        rd = select.select([self.sock], [], [], TIMEOUT)[0]
-        if rd == []:
-            raise ClientError("- ERROR: Client {0:3} didn't get reply after {1}s".format(
-                self.index, TIMEOUT))
+    def datagram_received(self, data, addr):
+        print(f"- Received: {data.decode()}")
+        self.send_next_query()
 
-        reply, server = self.sock.recvfrom(1024)
-        return reply
+    def error_received(self, exc):
+        print(f"Client [{self.index:>3}] error: {exc}")
+        self.on_con_lost.set_result(False)
+
+
+async def udp_client(host, port, index):
+    loop = asyncio.get_running_loop()
+    on_con_lost = loop.create_future()
+
+    transport, protocol = await loop.create_datagram_endpoint(
+        lambda: UDPClientProtocol(index, queries.copy(), on_con_lost),
+        remote_addr=(host, port)
+    )
+
+    try:
+        await on_con_lost
+    finally:
+        transport.close()
+
+
+async def main(host, port, nclients):
+    tasks = [udp_client(host, port, i) for i in range(nclients)]
+    results = await asyncio.gather(*tasks, return_exceptions=True)
+
+    print('- Clients never served: {}'.format(results.count(False)))
 
 
 if len(sys.argv) != 4:
     print(__doc__.format(sys.argv[0]))
     sys.exit(1)
 
-host = sys.argv[1]
-port = int(sys.argv[2])
-nclients = int(sys.argv[3])
-
-clients = [Client(n) for n in range(nclients)]
-
-for client in clients:
-    try:
-        client.start()
-    except thread.error as e:
-        print(e)
-        time.sleep(0.5)
-
-for w in clients:
-    w.join()
-
-print("- Clients never served: {}".format(
-    len([c for c in clients if not c.was_ok])))
+asyncio.run(main(
+    host=sys.argv[1],
+    port=int(sys.argv[2]),
+    nclients=int(sys.argv[3])))
