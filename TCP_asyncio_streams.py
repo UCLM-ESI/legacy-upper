@@ -3,7 +3,6 @@
 "Usage: {0} <port>"
 
 import sys
-import time
 import asyncio
 
 
@@ -16,20 +15,27 @@ async def handle(reader, writer):
     peername = writer.get_extra_info('peername')
     print("Client connected: {}".format(peername))
 
-    while 1:
-        data = await reader.read(32)
-        if not data:
-            break
-        writer.write(await upper(data))
-        await writer.drain()
+    try:
+        while 1:
+            data = await reader.read(32)
+            if not data:
+                break
+            writer.write(await upper(data))
+            await writer.drain()
 
-    print(f"Client disconnected: {peername}")
-    writer.close()
+    except asyncio.CancelledError:
+        pass
+    finally:
+        print(f"Client disconnected: {peername}")
+        writer.close()
+        await writer.wait_closed()
 
 
 async def main(port):
     server = await asyncio.start_server(handle, '', port)
-    await server.serve_forever()
+
+    async with server:
+        await server.serve_forever()
 
 
 if len(sys.argv) != 2:
@@ -39,4 +45,4 @@ if len(sys.argv) != 2:
 try:
     asyncio.run(main(sys.argv[1]))
 except KeyboardInterrupt:
-    print("exited")
+    print("shut down")

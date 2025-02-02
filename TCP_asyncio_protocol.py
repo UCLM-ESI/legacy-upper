@@ -32,7 +32,9 @@ class UpperProtocol(asyncio.Protocol):
 async def main(port):
     loop = asyncio.get_running_loop()
     server = await loop.create_server(UpperProtocol, '', port)
-    await server.serve_forever()
+
+    async with server:
+        await server.serve_forever()
 
 
 if len(sys.argv) != 2:

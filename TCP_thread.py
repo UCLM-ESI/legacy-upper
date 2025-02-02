@@ -34,8 +34,12 @@ sock.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
 sock.bind(('', int(sys.argv[1])))
 sock.listen(30)
 
-n = 0
-while 1:
-    child_sock, client = sock.accept()
-    n += 1
-    _thread.start_new_thread(handle, (child_sock, client, n))
+try:
+    n = 0
+    while 1:
+        child_sock, client = sock.accept()
+        n += 1
+        _thread.start_new_thread(handle, (child_sock, client, n))
+
+except KeyboardInterrupt:
+    print("shut down")
