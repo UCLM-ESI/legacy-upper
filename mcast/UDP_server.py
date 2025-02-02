@@ -31,8 +31,7 @@ if len(sys.argv) != 2:
 try:
     main(int(sys.argv[1]))
 except KeyboardInterrupt:
-    print("exited")
-
+    print("shut down")
 
 '''
 $ ./UDP_server.py 2000
