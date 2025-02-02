@@ -32,8 +32,8 @@ def main(host, port):
     sock.listen(30)
 
     while 1:
-        child_sock, client = sock.accept()
-        handle(child_sock, client)
+        conn, client = sock.accept()
+        handle(conn, client)
 
 
 if len(sys.argv) != 3:

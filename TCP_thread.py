@@ -36,6 +36,6 @@ sock.listen(30)
 
 n = 0
 while 1:
-    child_sock, client = sock.accept()
+    conn, client = sock.accept()
     n += 1
-    _thread.start_new_thread(handle, (child_sock, client, n))
+    _thread.start_new_thread(handle, (conn, client, n))

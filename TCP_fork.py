@@ -64,8 +64,8 @@ def main():
     n = 0
 
     while 1:
-        child_sock, client = sock.accept()
-        pool.start_new_process(handle, (child_sock, client))
+        conn, client = sock.accept()
+        pool.start_new_process(handle, (conn, client))
         n += 1
 
 
