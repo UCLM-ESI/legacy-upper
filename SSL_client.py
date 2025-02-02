@@ -38,4 +38,4 @@ if len(sys.argv) != 3:
 try:
     main(sys.argv[1], int(sys.argv[2]))
 except KeyboardInterrupt:
-    print("exited")
+    print("shut down")

@@ -57,4 +57,4 @@ if len(sys.argv) != 2:
 try:
     main()
 except KeyboardInterrupt:
-    print("exited")
+    print("shut down")
