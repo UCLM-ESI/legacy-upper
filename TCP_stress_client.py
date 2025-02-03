@@ -39,7 +39,10 @@ if len(sys.argv) != 4:
     print(__doc__.format(sys.argv[0]))
     sys.exit(1)
 
-asyncio.run(main(
-    host=sys.argv[1],
-    port=int(sys.argv[2]),
-    nclients=int(sys.argv[3])))
+try:
+    asyncio.run(main(
+        host=sys.argv[1],
+        port=int(sys.argv[2]),
+        nclients=int(sys.argv[3])))
+except KeyboardInterrupt:
+    pass
