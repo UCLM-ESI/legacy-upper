@@ -1,4 +1,4 @@
-## Python-3 TCP and UDP servers and clients
+## Python TCP and UDP servers and clients
 ![test](https://github.com/UCLM-ESI/upper/workflows/test/badge.svg)
 
 These examples implement a very simple service called ``upper``. The ``upper`` servers
@@ -16,8 +16,8 @@ UDP
 ---
 
 * [client][udp-client]
-* [synchronous server][udp-server]
-* [synchronous server with SocketServer][udp-SS]       | [doc][socketserver]
+* [single process server][udp-server]
+* [single process server with SocketServer][udp-SS]    | [doc][socketserver]
 
 * [multiprocess server][udp-fork]                      | [doc][fork]
 * [multiprocess server with SocketServer][udp-SS-fork] | [doc][socketserver]
@@ -35,18 +35,19 @@ TCP
 ---
 
 * [client][tcp-client]
-* [synchronous server][tcp-server]
-* [synchronous server with SocketServer][tcp-SS]                 | [doc][socketserver]
+* [single process server][tcp-server]
+* [single process server with SocketServer][tcp-SS]              | [doc][socketserver]
 
 * [forking server][tcp-fork]                                     | [doc][fork]
 * [forking server with SocketServer][tcp-SS-fork]                | [doc][socketserver]
 * [forking server with multiprocessing.Process][tcp-process]     | [doc][multiprocessing]
-* [preforking server with multiprocessing Process][tcp-prefork]  | [doc][multiprocessing]
+* [preforking server with multiprocessing.Process][tcp-prefork]  | [doc][multiprocessing]
 
 * [threaded server][tcp-thread]                                  | [doc][_thread]
 * [threaded server with SocketServer][tcp-SS-thread]             | [doc][socketserver]
 
 * [async server with select][tcp-select]                                     | [doc][select]
+* [async server with selectors][tcp-selectors]                               | [doc][selectors]
 * [async server with asyncio transports and protocols][tcp-asyncio-protocol] | [doc][asyncio-protocol]
 * [async server with asyncio streams][tcp-asyncio-streams]                   | [doc][asyncio-stream]
 * [DEPRECATED] [async server with asyncore][tcp-asyncore]                    | [doc][asyncore]
@@ -66,6 +67,7 @@ TCP
 [tcp-SS-thread]: https://raw.githubusercontent.com/UCLM-ESI/upper/master/TCP_SS_thread.py
 
 [tcp-select]:           https://raw.githubusercontent.com/UCLM-ESI/upper/master/TCP_select.py
+[tcp-selectors]:        https://raw.githubusercontent.com/UCLM-ESI/upper/refs/heads/master/TCP_selectors.py
 [tcp-asyncio-protocol]: https://raw.githubusercontent.com/UCLM-ESI/upper/master/TCP_asyncio_protocol.py
 [tcp-asyncio-streams]:  https://raw.githubusercontent.com/UCLM-ESI/upper/master/TCP_asyncio_streams.py
 [tcp-asyncore]:         https://raw.githubusercontent.com/UCLM-ESI/upper/master/TCP_asyncore.py
@@ -75,10 +77,21 @@ TCP
 [_thread]:          https://docs.python.org/3/library/_thread.html
 [socketserver]:     https://docs.python.org/3/library/socketserver.html
 [select]:           https://docs.python.org/3/library/socketserver.html
+[selectors]:        https://docs.python.org/3/library/selectors.html
 [multiprocessing]:  https://docs.python.org/3/library/multiprocessing.html
 [asyncio-protocol]: https://docs.python.org/3/library/asyncio-protocol.html
 [asyncio-stream]:   https://docs.python.org/3/library/asyncio-stream.html
 [asyncore]:         https://docs.python.org/3/library/asyncore.html
+
+
+SSL
+---
+
+* [client][ssl-client]
+* [SSL server][ssl-server]
+
+[ssl-client]: https://raw.githubusercontent.com/UCLM-ESI/upper/refs/heads/master/SSL_client.py
+[ssl-server]: https://raw.githubusercontent.com/UCLM-ESI/upper/refs/heads/master/SSL_server.py
 
 
 SSL certs
