@@ -3,12 +3,11 @@
 "Usage: {0} <port>"
 
 import sys
-import time
 import asyncio
 
 
-def upper(msg):
-    time.sleep(1)
+async def upper(msg):
+    await asyncio.sleep(1)  # Simula una operación bloqueante de 1 segundo
     return msg.upper()
 
 
@@ -20,8 +19,11 @@ class UpperProtocol(asyncio.Protocol):
 
     def data_received(self, data):
         message = data.decode()
+        loop = asyncio.get_running_loop()
+        loop.create_task(self.handle_message(message))
 
-        reply = upper(message)
+    async def handle_message(self, message):
+        reply = await upper(message)
         self.transport.write(reply.encode())
 
     def connection_lost(self, exc):
@@ -41,4 +43,5 @@ if len(sys.argv) != 2:
     print(__doc__.format(sys.argv[0]))
     sys.exit(1)
 
-asyncio.run(main(sys.argv[1]))
+asyncio.run(
+    main(int(sys.argv[1])))
