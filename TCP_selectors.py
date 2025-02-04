@@ -26,7 +26,7 @@ def child_handler(sock):
 def master_handler(sock):
     conn, client = sock.accept()
     selector.register(conn, selectors.EVENT_READ, child_handler)
-    print("+ Client connected: {}".format(client))
+    print(f"- Client connected: {client}")
 
 
 if len(sys.argv) != 2:

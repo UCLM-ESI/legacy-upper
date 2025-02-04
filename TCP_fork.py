@@ -13,7 +13,7 @@ class ProcessPool(object):
         self.max_children = max_children
         self.children = []
 
-    # taken from SocketServer (at Python std lib)
+    # from SocketServer (at Python std lib)
     def collect_children(self):
         while self.children:
             if len(self.children) < self.max_children:
@@ -42,8 +42,8 @@ def upper(msg):
     return msg.upper()
 
 
-def handle(sock, client):
-    print(f"Client connected: {client}")
+def handle(sock, client, n):
+    print(f"Client {n:>3} connected: {client}")
     while 1:
         data = sock.recv(32)
         if not data:
@@ -51,7 +51,7 @@ def handle(sock, client):
         sock.sendall(upper(data))
 
     sock.close()
-    print(f"Client disconnected: {client}")
+    print(f"Client {n:>3} disconnected: {client}")
 
 
 def main():
@@ -65,8 +65,7 @@ def main():
 
     while 1:
         conn, client = sock.accept()
-        pool.start_new_process(handle, (conn, client))
-        n += 1
+        pool.start_new_process(handle, (conn, client, n := n+1))
 
 
 if len(sys.argv) != 2:

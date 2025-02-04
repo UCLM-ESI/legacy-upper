@@ -15,7 +15,7 @@ def upper(msg):
 class UpperProtocol(asyncio.Protocol):
     def connection_made(self, transport):
         self.peername = transport.get_extra_info("peername")
-        print("Client connected: {}".format(self.peername))
+        print(f"Client connected: {self.peername}")
         self.transport = transport
 
     def data_received(self, data):
@@ -25,7 +25,7 @@ class UpperProtocol(asyncio.Protocol):
         self.transport.write(reply.encode())
 
     def connection_lost(self, exc):
-        print("Client disconnected: {}".format(self.peername))
+        print(f"Client disconnected: {self.peername}")
         self.transport.close()
 
 

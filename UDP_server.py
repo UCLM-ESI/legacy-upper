@@ -13,7 +13,7 @@ def upper(msg):
 
 
 def handle(sock, msg, client, n):
-    print(f"New request {n} {client}")
+    print(f"New request: {n} {client}")
     sock.sendto(upper(msg), client)
 
 
@@ -25,8 +25,7 @@ def main():
     n = 0
     while 1:
         msg, client = sock.recvfrom(1024)
-        n += 1
-        handle(sock, msg, client, n)
+        handle(sock, msg, client, n := n+1)
 
 
 if len(sys.argv) != 2:

@@ -13,7 +13,7 @@ async def upper(msg):
 
 async def handle(reader, writer):
     peername = writer.get_extra_info('peername')
-    print("Client connected: {}".format(peername))
+    print(f"Client connected: {peername}")
 
     try:
         while 1:

@@ -16,10 +16,10 @@ def upper(msg):
 
 class Upper(Protocol):
     def connectionMade(self):
-        print("Client connected: {}".format(self.transport.client))
+        print(f"Client connected: {self.transport.client}")
 
     def connectionLost(self, reason):
-        print("Client disconnected: {}".format(self.transport.client))
+        print(f"Client disconnected: {self.transport.client}")
 
     def dataReceived(self, data):
         self.transport.write(upper(data))

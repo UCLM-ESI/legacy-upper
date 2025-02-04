@@ -22,18 +22,17 @@ class UDPClientProtocol(asyncio.DatagramProtocol):
     def send_next_query(self):
         if self.queries:
             query = self.queries.pop(0)
-            data = f"[{self.index:>3}] {query}".encode()
-            self.transport.sendto(data)
+            self.transport.sendto(query.encode())
         else:
             self.transport.close()
             self.on_con_lost.set_result(True)
 
     def datagram_received(self, data, addr):
-        print(f"- Received: {data.decode()}")
+        print(f"- [{self.index:>3}] Reply: {data.decode()}")
         self.send_next_query()
 
     def error_received(self, exc):
-        print(f"Client [{self.index:>3}] error: {exc}")
+        print(f"[{self.index:>3}] Client error: {exc}")
         self.on_con_lost.set_result(False)
 
 

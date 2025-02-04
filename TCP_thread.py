@@ -14,15 +14,16 @@ def upper(msg):
 
 
 def handle(sock, client, n):
-    print(f"Client connected: {n} {client}")
+    print(f"Client {n:>3} connected: {client}")
     while 1:
         data = sock.recv(32)
         if not data:
             break
         sock.sendall(upper(data))
-    sock.close()
 
-    print(f"Client disconnected: {n} {client}")
+    sock.close()
+    print(f"Client {n:>3} disconnected: {client}")
+
 
 
 if len(sys.argv) != 2:
@@ -38,8 +39,7 @@ try:
     n = 0
     while 1:
         child_sock, client = sock.accept()
-        n += 1
-        _thread.start_new_thread(handle, (child_sock, client, n))
+        _thread.start_new_thread(handle, (child_sock, client, n := n+1))
 
 except KeyboardInterrupt:
     print("shut down")

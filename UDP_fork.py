@@ -56,8 +56,7 @@ def main():
 
     while 1:
         msg, client = sock.recvfrom(1024)
-        n += 1
-        pool.start_new_process(handle, (sock, msg, client, n))
+        pool.start_new_process(handle, (sock, msg, client, n := n+1))
 
 
 if len(sys.argv) != 2:

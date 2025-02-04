@@ -15,13 +15,14 @@ def upper(msg):
 
 class UpperHandler(StreamRequestHandler):
     def handle(self):
-        print("Client connected: {}".format(self.client_address))
+        print(f"Client connected: {self.client_address}")
         while 1:
             data = os.read(self.rfile.fileno(), 32)
             if not data:
                 break
 
             self.wfile.write(upper(data))
+        print(f"Client disconnected: {self.client_address}")
 
 
 class customTCPServer(TCPServer):

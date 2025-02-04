@@ -13,8 +13,13 @@ def upper(msg):
 
 
 class UpperHandler(DatagramRequestHandler):
+    def __init__(self, *args):
+        self.n = 0
+        DatagramRequestHandler.__init__(self, *args)
+
     def handle(self):
-        print("New request: {}".format(self.client_address))
+        self.n += 1
+        print("New request: {} {}".format(self.n, self.client_address))
         msg = self.rfile.read()
         self.wfile.write(upper(msg))
 
