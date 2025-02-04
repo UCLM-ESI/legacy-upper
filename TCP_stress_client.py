@@ -5,21 +5,29 @@
 import sys
 import asyncio
 
+TIMEOUT = 30
 queries = "twenty tiny tigers take two taxis to town".split()
 
 
 async def upper_client(host, port, index):
-    reader, writer = await asyncio.open_connection(host, port)
     try:
+        reader, writer = await asyncio.wait_for(
+            asyncio.open_connection(host, port), timeout=TIMEOUT)
+
         for query in queries:
-            data = f"[{index:>3}] {query}".encode()
+            data = query.encode()
             writer.write(data)
             await writer.drain()
-            reply = await reader.read(len(data))
-            print("- Received: {0}".format(reply.decode()))
+            reply = await asyncio.wait_for(
+                reader.read(len(data)), timeout=TIMEOUT)
+            print("- [{0:>3}] Reply: {1}".format(index, reply.decode()))
+
+    except asyncio.TimeoutError:
+        print(f"[{index:>3}] Client connection timeout")
+        return False
 
     except ConnectionResetError:
-        print(f"Client [{index:>3}] connection lost")
+        print(f"[{index:>3}] Client connection lost")
         return False
 
     writer.close()
