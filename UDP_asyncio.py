@@ -4,11 +4,17 @@
 
 import sys
 import asyncio
+import time
 
 
 async def upper(msg):
-    await asyncio.sleep(1)
-    return msg.upper()
+    def fake_heavy_upper(msg):
+        start = time.time()
+        while time.time() - start < 1:
+            pass
+        return msg.upper()
+
+    return await asyncio.to_thread(fake_heavy_upper, msg)
 
 
 class UpperUDPProtocol(asyncio.DatagramProtocol):

@@ -25,7 +25,6 @@ def handle(sock, client, n):
     print(f"Client {n:>3} disconnected: {client}")
 
 
-
 if len(sys.argv) != 2:
     print(__doc__.format(sys.argv[0]))
     sys.exit(1)
