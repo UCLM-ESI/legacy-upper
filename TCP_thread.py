@@ -38,8 +38,8 @@ sock.listen(30)
 try:
     n = 0
     while 1:
-        child_sock, client = sock.accept()
-        _thread.start_new_thread(handle, (child_sock, client, n := n+1))
+        conn, client = sock.accept()
+        _thread.start_new_thread(handle, (conn, client, n := n+1))
 
 except KeyboardInterrupt:
     print("shut down")
