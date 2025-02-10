@@ -102,7 +102,9 @@ SSL certs
 
 Generate CA (Certification Authority)
 
+```
 openssl req -x509 -newkey rsa:4096 -keyout ca-key.pem -out ca-cert.pem -nodes -subj "/CN=MyCA"
+```
 
 * ca-key.pem: CA private key
 * ca-cert.pem: CA certificate
