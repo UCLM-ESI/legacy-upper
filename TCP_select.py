@@ -48,7 +48,7 @@ if len(sys.argv) != 2:
 ss = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 ss.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
 ss.bind(('', int(sys.argv[1])))
-ss.listen(30)
+ss.listen(5)
 
 socks = [ss]
 

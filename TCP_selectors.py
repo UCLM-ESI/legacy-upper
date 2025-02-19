@@ -36,7 +36,7 @@ if len(sys.argv) != 2:
 ss = socket.socket()
 ss.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
 ss.bind(('', int(sys.argv[1])))
-ss.listen(30)
+ss.listen(5)
 
 selector = selectors.DefaultSelector()
 selector.register(ss, selectors.EVENT_READ, master_handler)

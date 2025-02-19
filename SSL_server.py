@@ -41,7 +41,7 @@ signal.signal(signal.SIGINT, lambda n, f: sys.exit(0))
 sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 sock.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
 sock.bind(('', int(sys.argv[1])))
-sock.listen(30)
+sock.listen(5)
 
 context = ssl.SSLContext(ssl.PROTOCOL_TLS_SERVER)
 context.load_cert_chain(certfile='server-cert.pem', keyfile='server-key.pem')

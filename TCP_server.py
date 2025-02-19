@@ -34,7 +34,7 @@ signal.signal(signal.SIGINT, lambda n, f: sys.exit(0))
 sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 sock.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEPORT, 1)
 sock.bind(('', int(sys.argv[1])))
-sock.listen(30)
+sock.listen(5)
 
 while 1:
     conn, client = sock.accept()
