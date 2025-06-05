@@ -15,10 +15,10 @@ def main(host, port):
         if not data:
             break
 
-        sent = sock.send(data)
+        sock.sendall(data)
 
         msg = bytes()
-        while len(msg) < sent:
+        while len(msg) < len(data):
             msg += sock.recv(32)
 
         print("Reply is '{0}'".format(msg.decode()))

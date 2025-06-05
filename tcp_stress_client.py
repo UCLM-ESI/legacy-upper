@@ -5,7 +5,7 @@
 import sys
 import asyncio
 
-TIMEOUT = 30
+TIMEOUT = 80
 queries = "twenty tiny tigers take two taxis to town".split()
 
 

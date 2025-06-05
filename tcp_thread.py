@@ -1,21 +1,21 @@
-#!/usr/bin/python3
+#!/usr/bin/env python3
 # Copyright: See AUTHORS and COPYING
 "Usage: {0} <port>"
 
 import sys
-import _thread
 import time
 import socket
+from threading import Thread
 
 
 def upper(msg):
-    time.sleep(1)  # simulates a complex job
+    time.sleep(1)
     return msg.upper()
 
 
 def handle(sock, client, n):
     print(f"Client {n:>3} connected: {client}")
-    while 1:
+    while True:
         data = sock.recv(32)
         if not data:
             break
@@ -25,20 +25,25 @@ def handle(sock, client, n):
     print(f"Client {n:>3} disconnected: {client}")
 
 
+def main(port):
+    sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+    sock.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
+    sock.bind(('', port))
+    sock.listen(30)
+
+    n = 0
+    while True:
+        conn, client = sock.accept()
+        t = Thread(
+            target=handle, args=(conn, client, n := n+1), daemon=True)
+        t.start()
+
+
 if len(sys.argv) != 2:
     print(__doc__.format(sys.argv[0]))
     sys.exit(1)
 
-sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-sock.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
-sock.bind(('', int(sys.argv[1])))
-sock.listen(30)
-
 try:
-    n = 0
-    while 1:
-        child_sock, client = sock.accept()
-        _thread.start_new_thread(handle, (child_sock, client, n := n+1))
-
+    main(int(sys.argv[1]))
 except KeyboardInterrupt:
     print("shut down")

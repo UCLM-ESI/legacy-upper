@@ -13,8 +13,8 @@ class ProcessPool(object):
         self.max_children = max_children
         self.children = []
 
-    # from SocketServer (at Python std lib)
     def collect_children(self):
+        # from socketserver module
         while self.children:
             if len(self.children) < self.max_children:
                 opts = os.WNOHANG
@@ -54,11 +54,11 @@ def handle(sock, client, n):
     print(f"Client {n:>3} disconnected: {client}")
 
 
-def main():
+def main(port):
     sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
     sock.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
-    sock.bind(('', int(sys.argv[1])))
-    sock.listen(30)
+    sock.bind(('', port))
+    sock.listen(5)
 
     pool = ProcessPool()
     n = 0
@@ -73,6 +73,6 @@ if len(sys.argv) != 2:
     sys.exit(1)
 
 try:
-    main()
+    main(int(sys.argv[1]))
 except KeyboardInterrupt:
     print("shut down")
