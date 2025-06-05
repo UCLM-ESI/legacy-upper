@@ -38,7 +38,7 @@ class ParentHandler(asyncore.dispatcher):
         self.create_socket(socket.AF_INET, socket.SOCK_STREAM)
         self.set_reuse_addr()
         self.bind(('', int(sys.argv[1])))
-        self.listen(30)
+        self.listen(5)
 
     def handle_accept(self):
         conn, client = self.accept()

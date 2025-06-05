@@ -29,7 +29,7 @@ def main(host, port):
     sock = socket.socket(socket.AF_INET6, socket.SOCK_STREAM)
     sock.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
     sock.bind((host, port))
-    sock.listen(30)
+    sock.listen(5)
 
     while 1:
         conn, client = sock.accept()
