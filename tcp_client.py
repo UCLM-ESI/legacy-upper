@@ -6,9 +6,9 @@ import sys
 import socket
 
 
-def main():
+def main(host, port):
     sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-    sock.connect((sys.argv[1], int(sys.argv[2])))
+    sock.connect((host, port))
 
     while 1:
         data = sys.stdin.readline().strip().encode()
@@ -31,6 +31,6 @@ if len(sys.argv) != 3:
     sys.exit(1)
 
 try:
-    main()
+    main(sys.argv[1], int(sys.argv[2]))
 except KeyboardInterrupt:
     print("shut down")
