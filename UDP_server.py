@@ -17,10 +17,9 @@ def handle(sock, msg, client, n):
     sock.sendto(upper(msg), client)
 
 
-def main():
+def main(port):
     sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
-    address = ('', int(sys.argv[1]))
-    sock.bind(address)
+    sock.bind(('', port))
 
     n = 0
     while 1:
@@ -33,6 +32,6 @@ if len(sys.argv) != 2:
     sys.exit(1)
 
 try:
-    main()
+    main(int(sys.argv[1]))
 except KeyboardInterrupt:
     print("shut down")

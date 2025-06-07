@@ -3,9 +3,9 @@
 "Usage: {0} <port>"
 
 import sys
-import os
 import time
-from socketserver import StreamRequestHandler, TCPServer
+import os
+from socketserver import StreamRequestHandler, ThreadingTCPServer
 
 
 def upper(msg):
@@ -13,7 +13,7 @@ def upper(msg):
     return msg.upper()
 
 
-class UpperHandler(StreamRequestHandler):
+class Handler(StreamRequestHandler):
     def handle(self):
         print(f"Client connected: {self.client_address}")
         while 1:
@@ -25,7 +25,7 @@ class UpperHandler(StreamRequestHandler):
         print(f"Client disconnected: {self.client_address}")
 
 
-class customTCPServer(TCPServer):
+class CustomTCPServer(ThreadingTCPServer):
     allow_reuse_address = True
 
 
@@ -33,6 +33,6 @@ if len(sys.argv) != 2:
     print(__doc__.format(sys.argv[0]))
     sys.exit(1)
 
-
-server = customTCPServer(('', int(sys.argv[1])), UpperHandler)
+server = CustomTCPServer(('', int(sys.argv[1])),
+                                  Handler)
 server.serve_forever()

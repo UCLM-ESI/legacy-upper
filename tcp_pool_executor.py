@@ -3,23 +3,12 @@
 "Usage: {0} <port>"
 
 import sys
-import os
 import time
 import socket
-import multiprocessing as mp
+import random
+from concurrent.futures import ProcessPoolExecutor
 
 MAX_CHILDREN = 10
-
-
-def start_new_process(func, args):
-    while len(mp.active_children()) >= MAX_CHILDREN:
-        try:
-            os.waitpid(0, 0)
-        except OSError:
-            pass
-
-    ps = mp.Process(target=func, args=args)
-    ps.start()
 
 
 def upper(msg):
@@ -37,17 +26,19 @@ def handle(sock, client):
 
     sock.close()
     print(f"Client disconnected: {client}")
+    return random.randint(1, 1000)
 
 
-def main():
+def main(port):
     sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
     sock.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
-    sock.bind(('', int(sys.argv[1])))
+    sock.bind(('', port))
     sock.listen(5)
 
-    while 1:
-        conn, client = sock.accept()
-        start_new_process(handle, (conn, client))
+    with ProcessPoolExecutor(max_workers=MAX_CHILDREN) as executor:
+        while 1:
+            conn, client = sock.accept()
+            executor.submit(handle, conn, client)
 
 
 if len(sys.argv) != 2:
@@ -55,6 +46,6 @@ if len(sys.argv) != 2:
     sys.exit(1)
 
 try:
-    main()
+    main(int(sys.argv[1]))
 except KeyboardInterrupt:
     print("shut down")

@@ -3,11 +3,23 @@
 "Usage: {0} <port>"
 
 import sys
+import os
 import time
 import socket
 import multiprocessing as mp
 
 MAX_CHILDREN = 10
+
+
+def start_new_process(func, args):
+    while len(mp.active_children()) >= MAX_CHILDREN:
+        try:
+            os.waitpid(0, 0)
+        except OSError:
+            pass
+
+    ps = mp.Process(target=func, args=args)
+    ps.start()
 
 
 def upper(msg):
@@ -27,37 +39,22 @@ def handle(sock, client):
     print(f"Client disconnected: {client}")
 
 
-def server(sock):
-    try:
-        while 1:
-            conn, client = sock.accept()
-            handle(conn, client)
-    except KeyboardInterrupt:
-        pass
-
-
 def main(port):
     sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
     sock.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
     sock.bind(('', port))
     sock.listen(5)
 
-    workers = []
-    for i in range(10):
-        ps = mp.Process(target=server, args=[sock])
-        ps.start()
-        workers.append(ps)
-
-    for w in workers:
-        w.join()
+    while 1:
+        conn, client = sock.accept()
+        start_new_process(handle, (conn, client))
 
 
-if __name__ == '__main__':
-    if len(sys.argv) != 2:
-        print(__doc__.format(sys.argv[0]))
-        sys.exit(1)
+if len(sys.argv) != 2:
+    print(__doc__.format(sys.argv[0]))
+    sys.exit(1)
 
-    try:
-        main(int(sys.argv[1]))
-    except KeyboardInterrupt:
-        print("shut down")
+try:
+    main(int(sys.argv[1]))
+except KeyboardInterrupt:
+    print("shut down")

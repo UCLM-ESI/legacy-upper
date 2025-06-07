@@ -5,7 +5,7 @@
 import sys
 import time
 import os
-from socketserver import StreamRequestHandler, ThreadingTCPServer
+from socketserver import StreamRequestHandler, ForkingTCPServer
 
 
 def upper(msg):
@@ -13,7 +13,7 @@ def upper(msg):
     return msg.upper()
 
 
-class UpperHandler(StreamRequestHandler):
+class Handler(StreamRequestHandler):
     def handle(self):
         print(f"Client connected: {self.client_address}")
         while 1:
@@ -22,12 +22,10 @@ class UpperHandler(StreamRequestHandler):
                 break
 
             self.wfile.write(upper(data))
-
         print(f"Client disconnected: {self.client_address}")
 
 
-
-class customThreadingTCPServer(ThreadingTCPServer):
+class CustomTCPServer(ForkingTCPServer):
     allow_reuse_address = True
 
 
@@ -35,6 +33,5 @@ if len(sys.argv) != 2:
     print(__doc__.format(sys.argv[0]))
     sys.exit(1)
 
-server = customThreadingTCPServer(('', int(sys.argv[1])),
-                                  UpperHandler)
+server = CustomTCPServer(('', int(sys.argv[1])), Handler)
 server.serve_forever()

@@ -37,16 +37,16 @@ You should install ``git`` software and download this repository by this way:
 ## TCP
 
 * [client][tcp-client]
-* [single process server][tcp-server]
-* [single process server with SocketServer][tcp-SS]              | [doc][socketserver]
+* [iterative server][tcp-server]
+* [iterative server with SocketServer][tcp-ss]              | [doc][socketserver]
 
 * [forking server][tcp-fork]                                     | [doc][fork]
-* [forking server with SocketServer][tcp-SS-fork]                | [doc][socketserver]
-* [forking server with multiprocessing.Process][tcp-process]     | [doc][multiprocessing]
-* [preforking server with multiprocessing.Process][tcp-prefork]  | [doc][multiprocessing]
+* [forking server with SocketServer][tcp-ss-fork]                | [doc][socketserver]
+* [forking server with multiprocessing.Process][tcp-mp-process]  | [doc][multiprocessing]
+* [preforking server with multiprocessing.Pool][tcp-mp-pool]     | [doc][multiprocessing]
 
-* [threaded server][tcp-thread]                                  | [doc][_thread]
-* [threaded server with SocketServer][tcp-SS-thread]             | [doc][socketserver]
+* [threaded server][tcp-thread]                                  | [doc][threading]
+* [threaded server with SocketServer][tcp-ss-thread]             | [doc][socketserver]
 
 * [async server with select][tcp-select]                                     | [doc][select]
 * [async server with selectors][tcp-selectors]                               | [doc][selectors]
@@ -56,17 +56,17 @@ You should install ``git`` software and download this repository by this way:
 * [async server with twisted][tcp-twisted]
 
 
-[tcp-client]: https://raw.githubusercontent.com/UCLM-ESI/upper/master/TCP_client.py
-[tcp-server]: https://raw.githubusercontent.com/UCLM-ESI/upper/master/TCP_server.py
-[tcp-SS]:     https://raw.githubusercontent.com/UCLM-ESI/upper/master/TCP_SS.py
+[tcp-client]: https://raw.githubusercontent.com/UCLM-ESI/upper/master/tcp_client.py
+[tcp-server]: https://raw.githubusercontent.com/UCLM-ESI/upper/master/tcp_server.py
+[tcp-ss]:     https://raw.githubusercontent.com/UCLM-ESI/upper/master/tcp_ss.py
 
-[tcp-fork]:    https://raw.githubusercontent.com/UCLM-ESI/upper/master/TCP_fork.py
-[tcp-SS-fork]: https://raw.githubusercontent.com/UCLM-ESI/upper/master/TCP_SS_fork.py
-[tcp-process]: https://raw.githubusercontent.com/UCLM-ESI/upper/master/TCP_process.py
-[tcp-prefork]:  https://raw.githubusercontent.com/UCLM-ESI/upper/master/TCP_prefork.py
+[tcp-fork]:    https://raw.githubusercontent.com/UCLM-ESI/upper/master/tcp_fork.py
+[tcp-ss-fork]: https://raw.githubusercontent.com/UCLM-ESI/upper/master/tcp_fork.py
+[tcp-mp-process]: https://raw.githubusercontent.com/UCLM-ESI/upper/master/tcp_mp_process.py
+[tcp-mp-pool]:  https://raw.githubusercontent.com/UCLM-ESI/upper/master/tcp_mp_pool.py
 
-[tcp-thread]:    https://raw.githubusercontent.com/UCLM-ESI/upper/master/TCP_thread.py
-[tcp-SS-thread]: https://raw.githubusercontent.com/UCLM-ESI/upper/master/TCP_SS_thread.py
+[tcp-thread]:    https://raw.githubusercontent.com/UCLM-ESI/upper/master/tcp_thread.py
+[tcp-ss-thread]: https://raw.githubusercontent.com/UCLM-ESI/upper/master/tcp_ss_thread.py
 
 [tcp-select]:           https://raw.githubusercontent.com/UCLM-ESI/upper/master/TCP_select.py
 [tcp-selectors]:        https://raw.githubusercontent.com/UCLM-ESI/upper/refs/heads/master/TCP_selectors.py
@@ -76,7 +76,7 @@ You should install ``git`` software and download this repository by this way:
 [tcp-twisted]:          https://raw.githubusercontent.com/UCLM-ESI/upper/master/TCP_twisted.py
 
 [fork]:             https://docs.python.org/3/library/os.html#os.fork
-[_thread]:          https://docs.python.org/3/library/_thread.html
+[threading]:        https://docs.python.org/3/library/threading.html
 [socketserver]:     https://docs.python.org/3/library/socketserver.html
 [select]:           https://docs.python.org/3/library/socketserver.html
 [selectors]:        https://docs.python.org/3/library/selectors.html

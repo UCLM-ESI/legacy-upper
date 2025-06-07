@@ -5,7 +5,7 @@
 import sys
 import time
 import socket
-import multiprocessing as mp
+from multiprocessing import Pool
 
 MAX_CHILDREN = 10
 
@@ -27,37 +27,23 @@ def handle(sock, client):
     print(f"Client disconnected: {client}")
 
 
-def server(sock):
-    try:
-        while 1:
-            conn, client = sock.accept()
-            handle(conn, client)
-    except KeyboardInterrupt:
-        pass
-
-
 def main(port):
     sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
     sock.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
     sock.bind(('', port))
     sock.listen(5)
 
-    workers = []
-    for i in range(10):
-        ps = mp.Process(target=server, args=[sock])
-        ps.start()
-        workers.append(ps)
-
-    for w in workers:
-        w.join()
+    with Pool(MAX_CHILDREN) as pool:
+        while 1:
+            conn, client = sock.accept()
+            pool.apply_async(handle, (conn, client))
 
 
-if __name__ == '__main__':
-    if len(sys.argv) != 2:
-        print(__doc__.format(sys.argv[0]))
-        sys.exit(1)
+if len(sys.argv) != 2:
+    print(__doc__.format(sys.argv[0]))
+    sys.exit(1)
 
-    try:
-        main(int(sys.argv[1]))
-    except KeyboardInterrupt:
-        print("shut down")
+try:
+    main(int(sys.argv[1]))
+except KeyboardInterrupt:
+    print("shut down")

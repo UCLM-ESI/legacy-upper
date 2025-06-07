@@ -47,9 +47,9 @@ def handle(sock, msg, client, n):
     sock.sendto(upper(msg), client)
 
 
-def main():
+def main(port):
     sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
-    sock.bind(('', int(sys.argv[1])))
+    sock.bind(('', port))
 
     pool = ProcessPool()
     n = 0
@@ -64,6 +64,6 @@ if len(sys.argv) != 2:
     sys.exit(1)
 
 try:
-    main()
+    main(int(sys.argv[1]))
 except KeyboardInterrupt:
     print("shut down")

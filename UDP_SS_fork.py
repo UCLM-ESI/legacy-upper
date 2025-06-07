@@ -12,7 +12,7 @@ def upper(msg):
     return msg.upper()
 
 
-class UpperHandler(DatagramRequestHandler):
+class Handler(DatagramRequestHandler):
     def __init__(self, *args):
         self.n = 0
         DatagramRequestHandler.__init__(self, *args)
@@ -28,5 +28,5 @@ if len(sys.argv) != 2:
     print(__doc__.format(sys.argv[0]))
     sys.exit(1)
 
-server = ForkingUDPServer(('', int(sys.argv[1])), UpperHandler)
+server = ForkingUDPServer(('', int(sys.argv[1])), Handler)
 server.serve_forever()

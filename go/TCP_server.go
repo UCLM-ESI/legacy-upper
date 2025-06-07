@@ -16,7 +16,7 @@ func handleConnection(conn net.Conn) {
 		if err != nil {
 			break
 		}
-		time.Sleep(time.Second)  //simulates a complex job
+		time.Sleep(time.Second)  // simulates a complex job
 		fmt.Fprintf(conn, strings.ToUpper(request))
 	}
 	fmt.Printf("Client disconnected %s\n", conn.RemoteAddr())
