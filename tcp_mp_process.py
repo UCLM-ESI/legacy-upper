@@ -8,11 +8,11 @@ import time
 import socket
 import multiprocessing as mp
 
-MAX_CHILDREN = 10
+MAX_PROCS = 10
 
 
 def start_new_process(func, args):
-    while len(mp.active_children()) >= MAX_CHILDREN:
+    while len(mp.active_children()) >= MAX_PROCS:
         try:
             os.waitpid(0, 0)
         except OSError:

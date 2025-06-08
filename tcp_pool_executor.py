@@ -8,7 +8,7 @@ import socket
 import random
 from concurrent.futures import ProcessPoolExecutor
 
-MAX_CHILDREN = 10
+MAX_PROCS = 10
 
 
 def upper(msg):
@@ -35,7 +35,7 @@ def main(port):
     sock.bind(('', port))
     sock.listen(5)
 
-    with ProcessPoolExecutor(max_workers=MAX_CHILDREN) as executor:
+    with ProcessPoolExecutor(max_workers=MAX_PROCS) as executor:
         while 1:
             conn, client = sock.accept()
             executor.submit(handle, conn, client)

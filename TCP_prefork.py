@@ -7,7 +7,7 @@ import time
 import socket
 import multiprocessing as mp
 
-MAX_CHILDREN = 10
+MAX_PROCS = 10
 
 
 def upper(msg):
@@ -43,7 +43,7 @@ def main(port):
     sock.listen(5)
 
     workers = []
-    for i in range(10):
+    for i in range(MAX_PROCS):
         ps = mp.Process(target=server, args=[sock])
         ps.start()
         workers.append(ps)

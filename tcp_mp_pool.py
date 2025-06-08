@@ -7,7 +7,7 @@ import time
 import socket
 from multiprocessing import Pool
 
-MAX_CHILDREN = 10
+MAX_PROCS = 10
 
 
 def upper(msg):
@@ -33,7 +33,7 @@ def main(port):
     sock.bind(('', port))
     sock.listen(5)
 
-    with Pool(MAX_CHILDREN) as pool:
+    with Pool(MAX_PROCS) as pool:
         while 1:
             conn, client = sock.accept()
             pool.apply_async(handle, (conn, client))

@@ -9,14 +9,14 @@ import socket
 
 
 class ProcessPool(object):
-    def __init__(self, max_children=40):
-        self.max_children = max_children
-        self.children = []
+    def __init__(self, max_procs=40):
+        self.max_procs = max_procs
+        self.procs = []
 
     def collect_children(self):
         # from socketserver module
-        while self.children:
-            if len(self.children) < self.max_children:
+        while self.procs:
+            if len(self.procs) < self.max_procs:
                 opts = os.WNOHANG
             else:
                 opts = 0
@@ -25,13 +25,13 @@ class ProcessPool(object):
             if not pid:
                 break
 
-            self.children.remove(pid)
+            self.procs.remove(pid)
 
     def start_new_process(self, func, args):
         self.collect_children()
         pid = os.fork()
         if pid:
-            self.children.append(pid)
+            self.procs.append(pid)
         else:
             func(*args)
             sys.exit()
