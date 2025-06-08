@@ -13,7 +13,6 @@ class ProcessPool(object):
         self.max_procs = max_procs
         self.procs = []
 
-    # taken from SocketServer (at Python std lib)
     def collect_children(self):
         while self.procs:
             if len(self.procs) < self.max_procs:

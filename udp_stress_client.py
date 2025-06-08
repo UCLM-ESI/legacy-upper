@@ -9,11 +9,11 @@ queries = "twenty tiny tigers take two taxis to town".split()
 
 
 class UDPClientProtocol(asyncio.DatagramProtocol):
-    def __init__(self, index, queries, on_con_lost):
+    def __init__(self, index, queries, on_conn_lost):
         self.index = index
         self.queries = queries
         self.transport = None
-        self.on_con_lost = on_con_lost
+        self.on_conn_lost = on_conn_lost
 
     def connection_made(self, transport):
         self.transport = transport
@@ -25,7 +25,7 @@ class UDPClientProtocol(asyncio.DatagramProtocol):
             self.transport.sendto(query.encode())
         else:
             self.transport.close()
-            self.on_con_lost.set_result(True)
+            self.on_conn_lost.set_result(True)
 
     def datagram_received(self, data, addr):
         print(f"- [{self.index:>3}] Reply: {data.decode()}")
@@ -33,20 +33,19 @@ class UDPClientProtocol(asyncio.DatagramProtocol):
 
     def error_received(self, exc):
         print(f"[{self.index:>3}] Client error: {exc}")
-        self.on_con_lost.set_result(False)
+        self.on_conn_lost.set_result(False)
 
 
 async def udp_client(host, port, index):
     loop = asyncio.get_running_loop()
-    on_con_lost = loop.create_future()
+    on_conn_lost = loop.create_future()
 
     transport, protocol = await loop.create_datagram_endpoint(
-        lambda: UDPClientProtocol(index, queries.copy(), on_con_lost),
-        remote_addr=(host, port)
-    )
+        lambda: UDPClientProtocol(index, queries.copy(), on_conn_lost),
+        remote_addr=(host, port))
 
     try:
-        await on_con_lost
+        await on_conn_lost
     finally:
         transport.close()
 
