@@ -8,7 +8,7 @@ import time
 import socket
 
 
-class ProcessPool(object):
+class ProcessThrottler(object):
     def __init__(self, max_procs=40):
         self.max_procs = max_procs
         self.procs = []
@@ -16,11 +16,7 @@ class ProcessPool(object):
     def collect_children(self):
         # from socketserver module
         while self.procs:
-            if len(self.procs) < self.max_procs:
-                opts = os.WNOHANG
-            else:
-                opts = 0
-
+            opts = os.WNOHANG if len(self.procs) < self.max_procs else 0
             pid, status = os.waitpid(0, opts)
             if not pid:
                 break
@@ -60,7 +56,7 @@ def main(port):
     sock.bind(('', port))
     sock.listen(5)
 
-    pool = ProcessPool()
+    pool = ProcessThrottler()
     n = 0
 
     while 1:
