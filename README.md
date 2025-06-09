@@ -42,8 +42,8 @@ You should install ``git`` software and download this repository by this way:
 
 * [forking server][tcp-fork]                                     | [doc][fork]
 * [forking server with SocketServer][tcp-ss-fork]                | [doc][socketserver]
-* [forking server with multiprocessing.Process][tcp-mp-process]  | [doc][multiprocessing]
-* [preforking server with multiprocessing.Pool][tcp-mp-pool]     | [doc][multiprocessing]
+* [forking server with multiprocessing.Process][tcp-process]     | [doc][multiprocessing]
+* [preforking server with multiprocessing.Pool][tcp-prefork-pool]  | [doc][multiprocessing]
 
 * [threaded server][tcp-thread]                                  | [doc][threading]
 * [threaded server with SocketServer][tcp-ss-thread]             | [doc][socketserver]
@@ -62,8 +62,8 @@ You should install ``git`` software and download this repository by this way:
 
 [tcp-fork]:    https://raw.githubusercontent.com/UCLM-ESI/upper/master/tcp_fork.py
 [tcp-ss-fork]: https://raw.githubusercontent.com/UCLM-ESI/upper/master/tcp_fork.py
-[tcp-mp-process]: https://raw.githubusercontent.com/UCLM-ESI/upper/master/tcp_mp_process.py
-[tcp-mp-pool]:  https://raw.githubusercontent.com/UCLM-ESI/upper/master/tcp_mp_pool.py
+[tcp-process]: https://raw.githubusercontent.com/UCLM-ESI/upper/master/tcp_process.py
+[tcp-prefork-pool]:  https://raw.githubusercontent.com/UCLM-ESI/upper/master/tcp_prefork_pool.py
 
 [tcp-thread]:    https://raw.githubusercontent.com/UCLM-ESI/upper/master/tcp_thread.py
 [tcp-ss-thread]: https://raw.githubusercontent.com/UCLM-ESI/upper/master/tcp_ss_thread.py
