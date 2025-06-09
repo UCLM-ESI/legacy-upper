@@ -3,27 +3,25 @@
 "Usage: {0} <host> <port>"
 
 import sys
-import socket
+from socket import socket
 
 
 def main(host, port):
-    sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-    sock.connect((host, port))
+    with socket() as sock:
+        sock.connect((host, port))
 
-    while 1:
-        data = sys.stdin.readline().strip().encode()
-        if not data:
-            break
+        while 1:
+            data = sys.stdin.readline().strip().encode()
+            if not data:
+                break
 
-        sock.sendall(data)
+            sock.sendall(data)
 
-        msg = bytes()
-        while len(msg) < len(data):
-            msg += sock.recv(32)
+            msg = bytes()
+            while len(msg) < len(data):
+                msg += sock.recv(32)
 
-        print("Reply is '{0}'".format(msg.decode()))
-
-    sock.close()
+            print("Reply is '{0}'".format(msg.decode()))
 
 
 if len(sys.argv) != 3:
