@@ -25,13 +25,13 @@ You should install ``git`` software and download this repository by this way:
 * [async server][udp-asyncio]                          | [doc][asyncio-protocol]
 
 
-[udp-client]: https://raw.githubusercontent.com/UCLM-ESI/upper/master/UDP_client.py
-[udp-server]: https://raw.githubusercontent.com/UCLM-ESI/upper/master/UDP_server.py
-[udp-SS]:     https://raw.githubusercontent.com/UCLM-ESI/upper/master/UDP_SS.py
+[udp-client]: https://raw.githubusercontent.com/UCLM-ESI/upper/master/udp_client.py
+[udp-server]: https://raw.githubusercontent.com/UCLM-ESI/upper/master/udp_server.py
+[udp-ss]:     https://raw.githubusercontent.com/UCLM-ESI/upper/master/udp_ss.py
 
-[udp-fork]:    https://raw.githubusercontent.com/UCLM-ESI/upper/master/UDP_fork.py
-[udp-SS-fork]: https://raw.githubusercontent.com/UCLM-ESI/upper/master/UDP_SS_fork.py
-[udp-asyncio]: https://raw.githubusercontent.com/UCLM-ESI/upper/master/UDP_asyncio.py
+[udp-fork]:    https://raw.githubusercontent.com/UCLM-ESI/upper/master/udp_fork.py
+[udp-ss-fork]: https://raw.githubusercontent.com/UCLM-ESI/upper/master/udp_ss_fork.py
+[udp-async]:   https://raw.githubusercontent.com/UCLM-ESI/upper/master/udp_async.py
 
 
 ## TCP
@@ -70,8 +70,8 @@ You should install ``git`` software and download this repository by this way:
 
 [tcp-select]:           https://raw.githubusercontent.com/UCLM-ESI/upper/master/TCP_select.py
 [tcp-selectors]:        https://raw.githubusercontent.com/UCLM-ESI/upper/refs/heads/master/TCP_selectors.py
-[tcp-asyncio-protocol]: https://raw.githubusercontent.com/UCLM-ESI/upper/master/TCP_asyncio_protocol.py
-[tcp-asyncio-streams]:  https://raw.githubusercontent.com/UCLM-ESI/upper/master/TCP_asyncio_streams.py
+[tcp-asyncio-protocol]: https://raw.githubusercontent.com/UCLM-ESI/upper/master/tcp_async_protocol.py
+[tcp-asyncio-streams]:  https://raw.githubusercontent.com/UCLM-ESI/upper/master/tcp_async_streams.py
 [tcp-asyncore]:         https://raw.githubusercontent.com/UCLM-ESI/upper/master/TCP_asyncore.py
 [tcp-twisted]:          https://raw.githubusercontent.com/UCLM-ESI/upper/master/TCP_twisted.py
 

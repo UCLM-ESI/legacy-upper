@@ -11,5 +11,5 @@ N_CLIENTS=$2
 tmux -f .tmux.conf new-session -d -s session
 tmux -f .tmux.conf split-window -h
 tmux -f .tmux.conf send-keys -t session:0.0 "./$SERVER 2000" C-m
-tmux -f .tmux.conf send-keys -t session:0.1 "sleep 1; ./TCP_stress_client.py 127.0.0.1 2000 $2" C-m
+tmux -f .tmux.conf send-keys -t session:0.1 "sleep 1; ./tcp_stress_client.py 127.0.0.1 2000 $2" C-m
 tmux -f .tmux.conf attach-session -t session
