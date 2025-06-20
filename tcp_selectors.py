@@ -5,8 +5,7 @@
 import sys
 import socket
 import time
-import select
-from utils import show_select_status
+import selectors
 
 
 def upper(msg):
@@ -22,29 +21,28 @@ class Server:
         self.master.listen(5)
         self.socks = [self.master]
 
-    def master_handler(self):
-        conn, client = self.master.accept()
-        self.socks.append(conn)
-        print(f"- Client connected: {client}, Total {len(self.socks)} sockets")
+    def master_handler(self, sock):
+        conn, client = sock.accept()
+        self.selector.register(conn, selectors.EVENT_READ, self.child_handler)
+        print(f"- Client connected: {client}")
 
     def child_handler(self, conn):
         data = conn.recv(32)
         if not data:
-            self.socks.remove(conn)
+            self.selector.unregister(conn)
             conn.close()
             return
 
         conn.sendall(upper(data))
 
     def run(self):
+        self.selector = selectors.DefaultSelector()
+        self.selector.register(
+            self.master, selectors.EVENT_READ, self.master_handler)
+
         while 1:
-            read_ready = select.select(self.socks, [], [])[0]
-            show_select_status(self.socks, read_ready)
-            for s in read_ready:
-                if s == self.master:
-                    self.master_handler()
-                else:
-                    self.child_handler(s)
+            for key, mask in self.selector.select():
+                key.data(key.fileobj)
 
 
 if __name__ == "__main__":

@@ -4,7 +4,7 @@ def show_select_status(socks, ready):
             return "master"
 
         try:
-            return sock.getpeername()
+            return "{}:{}".format(*sock.getpeername())
         except OSError:
             return "?"
 
