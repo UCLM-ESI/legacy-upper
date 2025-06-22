@@ -31,7 +31,7 @@ You should install ``git`` software and download this repository by this way:
 
 [udp-fork]:    https://raw.githubusercontent.com/UCLM-ESI/upper/master/udp_fork.py
 [udp-ss-fork]: https://raw.githubusercontent.com/UCLM-ESI/upper/master/udp_ss_fork.py
-[udp-async]:   https://raw.githubusercontent.com/UCLM-ESI/upper/master/udp_async.py
+[udp-async]:   https://raw.githubusercontent.com/UCLM-ESI/upper/master/udp_async_protocol.py
 
 
 ## TCP
@@ -50,7 +50,7 @@ You should install ``git`` software and download this repository by this way:
 
 * [async server with select][tcp-select]                                     | [doc][select]
 * [async server with selectors][tcp-selectors]                               | [doc][selectors]
-* [async server with asyncio transports and protocols][tcp-asyncio-protocols] | [doc][asyncio-protocol]
+* [async server with asyncio transports and protocols][tcp-asyncio-protocol] | [doc][asyncio-protocol]
 * [async server with asyncio streams][tcp-asyncio-streams]                   | [doc][asyncio-stream]
 * [DEPRECATED] [async server with asyncore][tcp-asyncore]                    | [doc][asyncore]
 * [async server with twisted][tcp-twisted]
@@ -70,7 +70,7 @@ You should install ``git`` software and download this repository by this way:
 
 [tcp-select]:           https://raw.githubusercontent.com/UCLM-ESI/upper/master/TCP_select.py
 [tcp-selectors]:        https://raw.githubusercontent.com/UCLM-ESI/upper/refs/heads/master/TCP_selectors.py
-[tcp-asyncio-protocols]: https://raw.githubusercontent.com/UCLM-ESI/upper/master/tcp_async_protocols.py
+[tcp-asyncio-protocol]: https://raw.githubusercontent.com/UCLM-ESI/upper/master/tcp_async_protocol.py
 [tcp-asyncio-streams]:  https://raw.githubusercontent.com/UCLM-ESI/upper/master/tcp_async_streams.py
 [tcp-asyncore]:         https://raw.githubusercontent.com/UCLM-ESI/upper/master/TCP_asyncore.py
 [tcp-twisted]:          https://raw.githubusercontent.com/UCLM-ESI/upper/master/TCP_twisted.py

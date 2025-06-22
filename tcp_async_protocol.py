@@ -50,7 +50,6 @@ if len(sys.argv) != 2:
     sys.exit(1)
 
 try:
-    asyncio.run(
-        main(int(sys.argv[1])))
+    asyncio.run(main(int(sys.argv[1])))
 except KeyboardInterrupt:
     print('shut down')

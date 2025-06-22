@@ -38,7 +38,7 @@ async def main(port):
 
     transport, _ = await loop.create_datagram_endpoint(
         lambda: UpperUDPProtocol(),
-        local_addr=('0.0.0.0', port)
+        local_addr=('', port)
     )
 
     try:
