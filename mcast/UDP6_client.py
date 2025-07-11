@@ -1,6 +1,6 @@
-#!/usr/bin/python3 -u
-# IPv6 mcast client
+#!/usr/bin/env python3
 # Copyright: See AUTHORS and COPYING
+# IPv6 mcast client
 "Usage: {0} <group> <port>"
 
 import sys
