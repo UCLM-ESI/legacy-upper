@@ -1,6 +1,6 @@
-#!/usr/bin/python3 -u
-# IPv6 mcast server
+#!/usr/bin/env python3
 # Copyright: See AUTHORS and COPYING
+# IPv6 mcast server
 "Usage: {0} <port>"
 
 import sys

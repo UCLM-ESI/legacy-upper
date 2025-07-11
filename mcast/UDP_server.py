@@ -1,6 +1,6 @@
-#!/usr/bin/python3 -u
-# mcast server
+#!/usr/bin/env python3
 # Copyright: See AUTHORS and COPYING
+# mcast server
 "Usage: {0} <port>"
 
 import sys
